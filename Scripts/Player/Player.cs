@@ -5,6 +5,7 @@ using System.Dynamic;
 public partial class Player : RigidBody2D
 {
 	private const float ROTATION_TORQUE = 250000.0f;
+	private const float MAX_ROTATION_DEGREES = 45.0f;
 	[Export] public RigidBody2D RightArm {get; private set;}
 	[Export] public RigidBody2D LeftArm {get; private set;}
 	public override void _Ready()
@@ -13,7 +14,7 @@ public partial class Player : RigidBody2D
 	}
     public override void _PhysicsProcess(double delta)
 	{
-		// Right Arm Rotation Constraints
+		 // Apply Torque for Right Arm Rotation
         if (Input.IsActionPressed("rotateRightArmPos"))
         {
             RightArm.ApplyTorque(ROTATION_TORQUE);
@@ -22,8 +23,7 @@ public partial class Player : RigidBody2D
         {
             RightArm.ApplyTorque(-ROTATION_TORQUE);
         }
-
-        // Left Arm Rotation Constraints
+        // Apply Torque for Left Arm Rotation
         if (Input.IsActionPressed("rotateLeftArmPos"))
         {
             LeftArm.ApplyTorque(ROTATION_TORQUE);
@@ -32,10 +32,10 @@ public partial class Player : RigidBody2D
         {
             LeftArm.ApplyTorque(-ROTATION_TORQUE);
         }
-
 		CapAngularVelocity(RightArm);
         CapAngularVelocity(LeftArm);
 	}
+
 	private void CapAngularVelocity(RigidBody2D body)
     {
         const float maxAngularSpeed = 5.0f; // Limit angular speed
