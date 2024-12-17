@@ -4,61 +4,44 @@ using System.Dynamic;
 
 public partial class Player : RigidBody2D
 {
-	private const float ROTATION_TORQUE = 80000.0f; // Adjust for desired rotation speed
+	private const float ROTATION_TORQUE = 250000.0f;
 	[Export] public RigidBody2D RightArm {get; private set;}
 	[Export] public RigidBody2D LeftArm {get; private set;}
-	[Export] public Area2D RightHook {get; private set;}
-	[Export] public Area2D LeftHook {get; private set;}
-	[Export] public RigidBody2D RightHookTip {get; private set;}
-
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		RightHook.BodyEntered += RightHookStick;
-		RightHook.BodyExited += RightHookUnStick;
+
 	}
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-
     public override void _PhysicsProcess(double delta)
 	{
-		// Allow player to move right and left arm based on pivot at same time
-		if (Input.IsActionPressed("rotateRightArmPos")){
+		// Right Arm Rotation Constraints
+        if (Input.IsActionPressed("rotateRightArmPos"))
+        {
             RightArm.ApplyTorque(ROTATION_TORQUE);
         }
-        else if (Input.IsActionPressed("rotateRightArmNeg")){
+        else if (Input.IsActionPressed("rotateRightArmNeg"))
+        {
             RightArm.ApplyTorque(-ROTATION_TORQUE);
         }
-		if (Input.IsActionPressed("rotateLeftArmPos")){
+
+        // Left Arm Rotation Constraints
+        if (Input.IsActionPressed("rotateLeftArmPos"))
+        {
             LeftArm.ApplyTorque(ROTATION_TORQUE);
         }
-        else if (Input.IsActionPressed("rotateLeftArmNeg")){
+        else if (Input.IsActionPressed("rotateLeftArmNeg"))
+        {
             LeftArm.ApplyTorque(-ROTATION_TORQUE);
         }
-		if (Input.IsActionPressed("straightenRightArm")){
-			Vector2 force = (RightArm.GlobalPosition - GlobalPosition).Normalized();
-			RightArm.ApplyCentralForce(force * 3000);
-		}
-		if (Input.IsActionPressed("straightenLeftArm")){
-			Vector2 force = (LeftArm.GlobalPosition - GlobalPosition).Normalized();
-			LeftArm.ApplyCentralForce(force * 4000);
-		}
+
+		CapAngularVelocity(RightArm);
+        CapAngularVelocity(LeftArm);
 	}
-    private void RightHookStick(Node2D body)
+	private void CapAngularVelocity(RigidBody2D body)
     {
-        CallDeferred(nameof(FreezeRight));
+        const float maxAngularSpeed = 5.0f; // Limit angular speed
+        if (Mathf.Abs(body.AngularVelocity) > maxAngularSpeed)
+        {
+            body.AngularVelocity = Mathf.Sign(body.AngularVelocity) * maxAngularSpeed;
+        }
     }
-	
-    private void RightHookUnStick(Node2D body)
-    {
-        CallDeferred(nameof(UnFreezeRight));
-    }
-	private void FreezeRight()
-	{
-		RightHookTip.Freeze = true;
-	}
-	private void UnFreezeRight()
-	{
-		RightHookTip.Freeze = false;
-	}
 }

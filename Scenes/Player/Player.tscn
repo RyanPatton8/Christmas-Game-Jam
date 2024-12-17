@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx83b5dhk73dt"]
+[gd_scene load_steps=6 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
 [ext_resource type="Texture2D" uid="uid://ce5soui76g4l1" path="res://Assets/icon.svg" id="1_qugp5"]
@@ -7,25 +7,17 @@
 size = Vector2(125, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4bih"]
-size = Vector2(87, 20)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_oj4je"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ectjm"]
+size = Vector2(57.5, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qp7rg"]
-size = Vector2(84, 20)
+size = Vector2(58, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7kup"]
-
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightHook", "LeftHook", "RightHookTip")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm")]
 center_of_mass_mode = 1
+lock_rotation = true
 script = ExtResource("1_oittr")
 RightArm = NodePath("RightArm")
 LeftArm = NodePath("LeftArm")
-RightHook = NodePath("RightArm/RightHookDetect")
-LeftHook = NodePath("LeftArm/Area2D")
-RightHookTip = NodePath("RightArm/RightHookTip")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -40,70 +32,44 @@ shape = SubResource("RectangleShape2D_kmtfi")
 position_smoothing_enabled = true
 
 [node name="RightArm" type="RigidBody2D" parent="."]
-position = Vector2(75, -11)
+position = Vector2(68, -3)
 collision_layer = 2
 collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="RightArm"]
-scale = Vector2(0.697196, 0.200932)
+position = Vector2(-10, 2)
+scale = Vector2(0.497196, 0.200932)
 texture = ExtResource("1_qugp5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm"]
-position = Vector2(0.5, 0)
+position = Vector2(-10.75, 2)
 shape = SubResource("RectangleShape2D_x4bih")
 
 [node name="ForBody" type="PinJoint2D" parent="RightArm"]
-position = Vector2(-45, 1)
+position = Vector2(-42, 3)
 node_a = NodePath("../..")
 node_b = NodePath("..")
-angular_limit_lower = -0.785398
-angular_limit_upper = 0.785398
-
-[node name="ForTerrain" type="PinJoint2D" parent="RightArm"]
-position = Vector2(41, 0)
-node_a = NodePath("..")
-node_b = NodePath("../RightHookTip")
-
-[node name="RightHookDetect" type="Area2D" parent="RightArm"]
-position = Vector2(54, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/RightHookDetect"]
-scale = Vector2(1.5, 1.5)
-shape = SubResource("CircleShape2D_oj4je")
-
-[node name="RightHookTip" type="RigidBody2D" parent="RightArm"]
-position = Vector2(54, 1)
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/RightHookTip"]
-shape = SubResource("CircleShape2D_ectjm")
+disable_collision = false
+angular_limit_lower = -0.0244346
+angular_limit_upper = 0.0244346
 
 [node name="LeftArm" type="RigidBody2D" parent="."]
-position = Vector2(-74, -11)
-collision_layer = 2
-collision_mask = 2
+position = Vector2(-62, 0)
+collision_layer = 4
+collision_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftArm"]
-scale = Vector2(0.697196, 0.200932)
+scale = Vector2(0.497196, 0.200932)
 texture = ExtResource("1_qugp5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm"]
-position = Vector2(-1, 0)
+position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_qp7rg")
 
 [node name="ForBody" type="PinJoint2D" parent="LeftArm"]
-position = Vector2(44, -2)
+position = Vector2(35, -1)
 node_a = NodePath("../..")
 node_b = NodePath("..")
-
-[node name="ForTerrain" type="PinJoint2D" parent="LeftArm"]
-position = Vector2(-38, -1)
-node_a = NodePath("..")
-
-[node name="Area2D" type="Area2D" parent="LeftArm"]
-position = Vector2(-43, 3)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/Area2D"]
-scale = Vector2(1.5, 1.5)
-shape = SubResource("RectangleShape2D_w7kup")
+disable_collision = false
+angular_limit_lower = -0.0244346
+angular_limit_upper = 0.0244346
