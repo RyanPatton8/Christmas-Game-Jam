@@ -130,8 +130,8 @@ texture = ExtResource("1_gmhxm")
 9:10/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_2gnqa"]
-physics_layer_0/collision_layer = 3
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_layer = 7
+physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetAtlasSource_o8l07")
 
 [node name="Node2D" type="Node2D"]
@@ -142,4 +142,4 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAIAAAAAAABAAAAAAAJAAAAAAACAAAAAAAKAAA
 tile_set = SubResource("TileSet_2gnqa")
 
 [node name="Player" parent="." instance=ExtResource("2_notae")]
-position = Vector2(166, -205)
+position = Vector2(611, -205)
