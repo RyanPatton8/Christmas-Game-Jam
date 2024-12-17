@@ -1,20 +1,58 @@
 using Godot;
 using System;
 using System.Dynamic;
+using System.Numerics;
 
 public partial class Player : RigidBody2D
 {
+	//Arms and movement
 	private const float ROTATION_TORQUE = 250000.0f;
-	private const float MAX_ROTATION_DEGREES = 45.0f;
 	[Export] public RigidBody2D RightArm {get; private set;}
 	[Export] public RigidBody2D LeftArm {get; private set;}
+
+	//Groundchecks and groundcheck boolean
+	[Export] public Area2D RightGroundCheck {get; private set;}
+	[Export] public Area2D LeftGroundCheck {get; private set;}
+	private bool canRightGrapple = false;
+	private bool canLeftGrapple = false;
+
+	//anchorpoints for hooks
+	[Export] public RigidBody2D RightHook {get; private set;}
+	[Export] public RigidBody2D LeftHook {get; private set;}
 	public override void _Ready()
 	{
-
+		RightGroundCheck.BodyEntered += AlterRightGrapple;
+		LeftGroundCheck.BodyEntered += AlterLeftGrapple;
+		RightGroundCheck.BodyExited += AlterRightGrapple;
+		LeftGroundCheck.BodyExited += AlterLeftGrapple;
 	}
     public override void _PhysicsProcess(double delta)
-	{
-		 // Apply Torque for Right Arm Rotation
+    {
+        ArmRotation();
+		if(Input.IsActionPressed("stickRightArm") && canRightGrapple){
+			HandleFreezeBody(RightHook);
+		}
+		else if(RightHook.Freeze){
+			HandleFreezeBody(RightHook);
+		}
+		else{
+			
+		}
+		if(Input.IsActionPressed("stickLeftArm") && canLeftGrapple){
+			HandleFreezeBody(LeftHook);
+		}
+		else if(LeftHook.Freeze){
+			HandleFreezeBody(LeftHook);
+		}
+		else{
+
+		}
+        CapAngularVelocity(RightArm);
+        CapAngularVelocity(LeftArm);
+    }
+
+    private void ArmRotation()
+    {
         if (Input.IsActionPressed("rotateRightArmPos"))
         {
             RightArm.ApplyTorque(ROTATION_TORQUE);
@@ -32,11 +70,8 @@ public partial class Player : RigidBody2D
         {
             LeftArm.ApplyTorque(-ROTATION_TORQUE);
         }
-		CapAngularVelocity(RightArm);
-        CapAngularVelocity(LeftArm);
-	}
-
-	private void CapAngularVelocity(RigidBody2D body)
+    }
+    private void CapAngularVelocity(RigidBody2D body)
     {
         const float maxAngularSpeed = 5.0f; // Limit angular speed
         if (Mathf.Abs(body.AngularVelocity) > maxAngularSpeed)
@@ -44,4 +79,19 @@ public partial class Player : RigidBody2D
             body.AngularVelocity = Mathf.Sign(body.AngularVelocity) * maxAngularSpeed;
         }
     }
+	private void AlterLeftGrapple(Node2D body)
+    {
+        canLeftGrapple = !canLeftGrapple;
+		GD.Print("LeftGrapple" + canLeftGrapple);
+    }
+    private void AlterRightGrapple(Node2D body)
+    {
+		canRightGrapple = !canRightGrapple;
+		GD.Print("RightGrapple" + canRightGrapple);
+    }
+
+	private void HandleFreezeBody(RigidBody2D body){
+		body.Freeze = !body.Freeze;
+	}
+
 }

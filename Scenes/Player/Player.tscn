@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx83b5dhk73dt"]
+[gd_scene load_steps=10 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
 [ext_resource type="Texture2D" uid="uid://ce5soui76g4l1" path="res://Assets/icon.svg" id="1_qugp5"]
@@ -9,13 +9,25 @@ radius = 60.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4bih"]
 size = Vector2(57.5, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6iv0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4t32i"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qp7rg"]
 size = Vector2(58, 20)
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h281g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rjgko"]
+
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook")]
 script = ExtResource("1_oittr")
 RightArm = NodePath("RightArm")
 LeftArm = NodePath("LeftArm")
+RightGroundCheck = NodePath("RightArm/RightGroundCheck")
+LeftGroundCheck = NodePath("LeftArm/LeftGroundCheck")
+RightHook = NodePath("RightArm/RightHook")
+LeftHook = NodePath("LeftArm/LeftHook")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -51,6 +63,28 @@ disable_collision = false
 angular_limit_lower = -0.785398
 angular_limit_upper = 0.785398
 
+[node name="RightGroundCheck" type="Area2D" parent="RightArm"]
+position = Vector2(32, 2)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/RightGroundCheck"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_d6iv0")
+
+[node name="RightHook" type="RigidBody2D" parent="RightArm"]
+position = Vector2(45, 1)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/RightHook"]
+shape = SubResource("CircleShape2D_4t32i")
+
+[node name="ForGround" type="PinJoint2D" parent="RightArm"]
+position = Vector2(32, 2)
+node_a = NodePath("..")
+node_b = NodePath("../RightHook")
+
 [node name="LeftArm" type="RigidBody2D" parent="."]
 position = Vector2(-71, 1)
 collision_layer = 5
@@ -72,3 +106,25 @@ node_b = NodePath("..")
 disable_collision = false
 angular_limit_lower = -0.785398
 angular_limit_upper = 0.785398
+
+[node name="LeftGroundCheck" type="Area2D" parent="LeftArm"]
+position = Vector2(-26, -1)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/LeftGroundCheck"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_h281g")
+
+[node name="LeftHook" type="RigidBody2D" parent="LeftArm"]
+position = Vector2(-40, -1)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/LeftHook"]
+shape = SubResource("CircleShape2D_rjgko")
+
+[node name="ForGround" type="PinJoint2D" parent="LeftArm"]
+position = Vector2(-26, -1)
+node_a = NodePath("..")
+node_b = NodePath("../LeftHook")
