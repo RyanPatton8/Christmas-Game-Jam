@@ -1,6 +1,0 @@
-TileMapLayer
-CollisionShape2D
-Area2D
-RigidBody2D
-Sprite2D
-Node
