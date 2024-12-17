@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dx83b5dhk73dt"]
 
-[ext_resource type="Texture2D" uid="uid://clawgp3l6knu1" path="res://Assets/icon.svg" id="1_qugp5"]
+[ext_resource type="Texture2D" uid="uid://ce5soui76g4l1" path="res://Assets/icon.svg" id="1_qugp5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtfi"]
 size = Vector2(125, 124)
@@ -13,50 +13,65 @@ size = Vector2(43.6035, 125.29)
 [node name="Player" type="RigidBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_qugp5")
 
 [node name="MainBody" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 1)
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_kmtfi")
 
 [node name="LeftArm" type="RigidBody2D" parent="."]
-position = Vector2(-65, 4)
+position = Vector2(-43, 2)
+collision_layer = 2
+collision_mask = 2
+freeze = true
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftArm"]
 position = Vector2(3, 0)
 rotation = -0.593412
-scale = Vector2(0.378195, 1)
+scale = Vector2(0.283, 0.75)
 texture = ExtResource("1_qugp5")
 offset = Vector2(0, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm"]
-position = Vector2(-28, -42)
+position = Vector2(-18, -32)
 rotation = -0.598648
+scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_msvon")
 
 [node name="Area2D" type="Area2D" parent="LeftArm"]
-position = Vector2(-88, -64)
+position = Vector2(-65, -52)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/Area2D"]
+scale = Vector2(1.52, 1.44)
 shape = SubResource("RectangleShape2D_rr3p4")
 
 [node name="RightArm" type="RigidBody2D" parent="."]
-position = Vector2(64, 4)
+position = Vector2(34, 3)
+collision_layer = 2
+collision_mask = 2
+freeze = true
 
 [node name="Sprite2D" type="Sprite2D" parent="RightArm"]
 position = Vector2(3, 0)
 rotation = 0.665133
-scale = Vector2(0.378195, 1)
+scale = Vector2(0.283, 0.75)
 texture = ExtResource("1_qugp5")
 offset = Vector2(0, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm"]
-position = Vector2(32, -39)
+position = Vector2(28, -30)
 rotation = 0.710548
+scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_msvon")
 
 [node name="Area2D" type="Area2D" parent="RightArm"]
-position = Vector2(96, -63)
+position = Vector2(74, -46)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/Area2D"]
+scale = Vector2(1.52, 1.44)
 shape = SubResource("RectangleShape2D_rr3p4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true

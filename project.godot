@@ -17,3 +17,7 @@ config/icon="res://Assets/icon.svg"
 [dotnet]
 
 project/assembly_name="Christmas-Game-Jam"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
