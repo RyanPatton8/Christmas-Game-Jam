@@ -1,24 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx83b5dhk73dt"]
+[gd_scene load_steps=9 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
-[ext_resource type="Texture2D" uid="uid://ce5soui76g4l1" path="res://Assets/icon.svg" id="1_qugp5"]
+[ext_resource type="Texture2D" uid="uid://cjuydxtvcjs4i" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
+[ext_resource type="Texture2D" uid="uid://d3e53xb6h0x6" path="res://Assets/char/Sprite-0003.png" id="3_i42bc"]
+[ext_resource type="Texture2D" uid="uid://gcaogyme5w85" path="res://Assets/char/Sprite-0005.png" id="4_ou5g2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0o3qt"]
-radius = 60.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xrqi"]
+radius = 14.0
+height = 76.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4bih"]
-size = Vector2(57.5, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6iv0"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4t32i"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qp7rg"]
-size = Vector2(58, 20)
+size = Vector2(13.875, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h281g"]
+size = Vector2(2, 3)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rjgko"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qp7rg"]
+size = Vector2(15, 5.5)
 
 [node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook")]
 script = ExtResource("1_oittr")
@@ -30,13 +28,13 @@ RightHook = NodePath("RightArm/RightHook")
 LeftHook = NodePath("LeftArm/LeftHook")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_qugp5")
+scale = Vector2(2, 2)
+texture = ExtResource("2_el2lm")
 
 [node name="MainBody" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
+position = Vector2(0, 8)
 scale = Vector2(0.5, 0.5)
-shape = SubResource("CircleShape2D_0o3qt")
+shape = SubResource("CapsuleShape2D_5xrqi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -45,18 +43,20 @@ position_smoothing_enabled = true
 position = Vector2(65, -1)
 collision_layer = 3
 collision_mask = 3
+mass = 0.4
 
 [node name="Sprite2D" type="Sprite2D" parent="RightArm"]
-position = Vector2(0.820541, 1.85965)
-scale = Vector2(0.497196, 0.200932)
-texture = ExtResource("1_qugp5")
+position = Vector2(-33, -10)
+scale = Vector2(2, 2)
+texture = ExtResource("3_i42bc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm"]
-position = Vector2(0.0705414, 1.85965)
+position = Vector2(-48, 10)
 shape = SubResource("RectangleShape2D_x4bih")
 
 [node name="ForBody" type="PinJoint2D" parent="RightArm"]
-position = Vector2(-31, 1)
+position = Vector2(-59, 10)
+scale = Vector2(0.5, 0.5)
 node_a = NodePath("../..")
 node_b = NodePath("..")
 disable_collision = false
@@ -64,24 +64,26 @@ angular_limit_lower = -0.785398
 angular_limit_upper = 0.785398
 
 [node name="RightGroundCheck" type="Area2D" parent="RightArm"]
-position = Vector2(32, 2)
+position = Vector2(-13, -19)
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/RightGroundCheck"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RightArm/RightGroundCheck"]
+position = Vector2(1, -2)
 scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_d6iv0")
+shape = SubResource("RectangleShape2D_h281g")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightArm"]
+polygon = PackedVector2Array(-38, 16, -42, 16, -42, -28, -40, -28, -40, -32, -38, -32, -38, -36, -36, -36, -36, -38, -34, -38, -34, -40, -32, -40, -32, -42, -30, -42, -30, -44, -18, -44, -18, -42, -16, -42, -16, -40, -14, -40, -14, -36, -12, -36, -12, -32, -10, -32, -10, -22, -12, -22, -12, -18, -14, -18, -14, -26, -16, -26, -16, -30, -18, -30, -18, -34, -20, -34, -20, -36, -30, -36, -30, -34, -32, -34, -32, -30, -34, -30, -34, -26, -36, -26, -36, -18, -38, -18)
 
 [node name="RightHook" type="RigidBody2D" parent="RightArm"]
 position = Vector2(45, 1)
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/RightHook"]
-shape = SubResource("CircleShape2D_4t32i")
-
 [node name="ForGround" type="PinJoint2D" parent="RightArm"]
-position = Vector2(32, 2)
+position = Vector2(-42, 10)
+scale = Vector2(0.5, 0.5)
 node_a = NodePath("..")
 node_b = NodePath("../RightHook")
 
@@ -89,18 +91,20 @@ node_b = NodePath("../RightHook")
 position = Vector2(-71, 1)
 collision_layer = 5
 collision_mask = 5
+mass = 0.4
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftArm"]
-position = Vector2(3.82054, -0.140352)
-scale = Vector2(0.497196, 0.200932)
-texture = ExtResource("1_qugp5")
+position = Vector2(41, -14)
+scale = Vector2(2, 2)
+texture = ExtResource("4_ou5g2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm"]
-position = Vector2(5.82054, -0.140352)
+position = Vector2(54.5, 8)
 shape = SubResource("RectangleShape2D_qp7rg")
 
 [node name="ForBody" type="PinJoint2D" parent="LeftArm"]
-position = Vector2(35, 0)
+position = Vector2(65, 8)
+scale = Vector2(0.5, 0.5)
 node_a = NodePath("../..")
 node_b = NodePath("..")
 disable_collision = false
@@ -108,11 +112,12 @@ angular_limit_lower = -0.785398
 angular_limit_upper = 0.785398
 
 [node name="LeftGroundCheck" type="Area2D" parent="LeftArm"]
-position = Vector2(-26, -1)
+position = Vector2(21, -21)
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/LeftGroundCheck"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LeftArm/LeftGroundCheck"]
+position = Vector2(-1, -2)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_h281g")
 
@@ -121,10 +126,11 @@ position = Vector2(-40, -1)
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/LeftHook"]
-shape = SubResource("CircleShape2D_rjgko")
-
 [node name="ForGround" type="PinJoint2D" parent="LeftArm"]
-position = Vector2(-26, -1)
+position = Vector2(48, 8)
+scale = Vector2(0.5, 0.5)
 node_a = NodePath("..")
 node_b = NodePath("../LeftHook")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="LeftArm"]
+polygon = PackedVector2Array(44, 14, 48, 14, 48, -26, 48, -30, 46, -30, 46, -34, 44, -34, 44, -38, 42, -38, 42, -40, 40, -40, 40, -42, 38, -42, 38, -44, 36, -44, 36, -46, 26, -46, 26, -44, 24, -44, 24, -42, 22, -42, 22, -38, 20, -38, 20, -34, 18, -34, 18, -24, 20, -24, 20, -20, 22, -20, 22, -28, 24, -28, 24, -32, 26, -32, 26, -36, 28, -36, 28, -38, 36, -38, 36, -36, 38, -36, 38, -32, 40, -32, 40, -28, 42, -28, 42, -20, 44, -20)

@@ -6,7 +6,7 @@ using System.Numerics;
 public partial class Player : RigidBody2D
 {
 	//Arms and movement
-	private const float ROTATION_TORQUE = 250000.0f;
+	private const float ROTATION_TORQUE = 80000.0f;
 	[Export] public RigidBody2D RightArm {get; private set;}
 	[Export] public RigidBody2D LeftArm {get; private set;}
 
@@ -26,9 +26,9 @@ public partial class Player : RigidBody2D
 		RightGroundCheck.BodyExited += AlterRightGrapple;
 		LeftGroundCheck.BodyExited += AlterLeftGrapple;
 	}
-    public override void _PhysicsProcess(double delta)
-    {
-        ArmRotation();
+	public override void _PhysicsProcess(double delta)
+	{
+		ArmRotation();
 		if(Input.IsActionPressed("stickRightArm") && canRightGrapple){
 			HandleFreezeBody(RightHook);
 		}
@@ -47,48 +47,48 @@ public partial class Player : RigidBody2D
 		else{
 
 		}
-        CapAngularVelocity(RightArm);
-        CapAngularVelocity(LeftArm);
-    }
+		CapAngularVelocity(RightArm);
+		CapAngularVelocity(LeftArm);
+	}
 
-    private void ArmRotation()
-    {
-        if (Input.IsActionPressed("rotateRightArmPos"))
-        {
-            RightArm.ApplyTorque(ROTATION_TORQUE);
-        }
-        else if (Input.IsActionPressed("rotateRightArmNeg"))
-        {
-            RightArm.ApplyTorque(-ROTATION_TORQUE);
-        }
-        // Apply Torque for Left Arm Rotation
-        if (Input.IsActionPressed("rotateLeftArmPos"))
-        {
-            LeftArm.ApplyTorque(ROTATION_TORQUE);
-        }
-        else if (Input.IsActionPressed("rotateLeftArmNeg"))
-        {
-            LeftArm.ApplyTorque(-ROTATION_TORQUE);
-        }
-    }
-    private void CapAngularVelocity(RigidBody2D body)
-    {
-        const float maxAngularSpeed = 5.0f; // Limit angular speed
-        if (Mathf.Abs(body.AngularVelocity) > maxAngularSpeed)
-        {
-            body.AngularVelocity = Mathf.Sign(body.AngularVelocity) * maxAngularSpeed;
-        }
-    }
+	private void ArmRotation()
+	{
+		if (Input.IsActionPressed("rotateRightArmPos"))
+		{
+			RightArm.ApplyTorque(ROTATION_TORQUE);
+		}
+		else if (Input.IsActionPressed("rotateRightArmNeg"))
+		{
+			RightArm.ApplyTorque(-ROTATION_TORQUE);
+		}
+		// Apply Torque for Left Arm Rotation
+		if (Input.IsActionPressed("rotateLeftArmPos"))
+		{
+			LeftArm.ApplyTorque(ROTATION_TORQUE);
+		}
+		else if (Input.IsActionPressed("rotateLeftArmNeg"))
+		{
+			LeftArm.ApplyTorque(-ROTATION_TORQUE);
+		}
+	}
+	private void CapAngularVelocity(RigidBody2D body)
+	{
+		const float maxAngularSpeed = 5.0f; // Limit angular speed
+		if (Mathf.Abs(body.AngularVelocity) > maxAngularSpeed)
+		{
+			body.AngularVelocity = Mathf.Sign(body.AngularVelocity) * maxAngularSpeed;
+		}
+	}
 	private void AlterLeftGrapple(Node2D body)
-    {
-        canLeftGrapple = !canLeftGrapple;
+	{
+		canLeftGrapple = !canLeftGrapple;
 		GD.Print("LeftGrapple" + canLeftGrapple);
-    }
-    private void AlterRightGrapple(Node2D body)
-    {
+	}
+	private void AlterRightGrapple(Node2D body)
+	{
 		canRightGrapple = !canRightGrapple;
 		GD.Print("RightGrapple" + canRightGrapple);
-    }
+	}
 
 	private void HandleFreezeBody(RigidBody2D body){
 		body.Freeze = !body.Freeze;
