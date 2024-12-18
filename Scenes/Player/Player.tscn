@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx83b5dhk73dt"]
+[gd_scene load_steps=9 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
 [ext_resource type="Texture2D" uid="uid://cjuydxtvcjs4i" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
@@ -7,10 +7,16 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xrqi"]
 radius = 14.0
-height = 76.0
+height = 60.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h281g"]
 size = Vector2(2, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m557b"]
+size = Vector2(14, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0lfi"]
+size = Vector2(15, 6)
 
 [node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook")]
 script = ExtResource("1_oittr")
@@ -26,7 +32,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_el2lm")
 
 [node name="MainBody" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, 4)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CapsuleShape2D_5xrqi")
 
@@ -77,6 +83,10 @@ scale = Vector2(0.5, 0.5)
 node_a = NodePath("..")
 node_b = NodePath("../RightHook")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm"]
+position = Vector2(-50, 10)
+shape = SubResource("RectangleShape2D_m557b")
+
 [node name="LeftArm" type="RigidBody2D" parent="."]
 position = Vector2(-71, 1)
 collision_layer = 4
@@ -122,3 +132,11 @@ node_b = NodePath("../LeftHook")
 light_mask = 2
 visibility_layer = 2
 polygon = PackedVector2Array(44, 14, 48, 14, 48, -26, 48, -30, 46, -30, 46, -34, 44, -34, 44, -38, 42, -38, 42, -40, 40, -40, 40, -42, 38, -42, 38, -44, 36, -44, 36, -46, 26, -46, 26, -44, 24, -44, 24, -42, 22, -42, 22, -38, 20, -38, 20, -34, 18, -34, 18, -24, 20, -24, 20, -20, 22, -20, 22, -28, 24, -28, 24, -32, 26, -32, 26, -36, 28, -36, 28, -38, 36, -38, 36, -36, 38, -36, 38, -32, 40, -32, 40, -28, 42, -28, 42, -20, 44, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm"]
+position = Vector2(56, 8)
+shape = SubResource("RectangleShape2D_m557b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_q0lfi")
