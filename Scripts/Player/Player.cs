@@ -6,7 +6,7 @@ using System.Numerics;
 public partial class Player : RigidBody2D
 {
 	//Arms and movement
-	private const float ROTATION_TORQUE = 80000.0f;
+	private const float ROTATION_TORQUE = 28000.0f;
 	[Export] public RigidBody2D RightArm {get; private set;}
 	[Export] public RigidBody2D LeftArm {get; private set;}
 

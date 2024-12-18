@@ -19,6 +19,8 @@ size = Vector2(14, 6)
 size = Vector2(15, 6)
 
 [node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook")]
+mass = 0.8
+gravity_scale = 0.25
 script = ExtResource("1_oittr")
 RightArm = NodePath("RightArm")
 LeftArm = NodePath("LeftArm")
@@ -43,7 +45,7 @@ position_smoothing_enabled = true
 position = Vector2(65, -1)
 collision_layer = 2
 collision_mask = 2
-mass = 0.4
+mass = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="RightArm"]
 position = Vector2(-33, -10)
@@ -76,6 +78,7 @@ polygon = PackedVector2Array(-38, 16, -42, 16, -42, -28, -40, -28, -40, -32, -38
 position = Vector2(45, 1)
 collision_layer = 0
 collision_mask = 0
+mass = 0.2
 
 [node name="ForGround" type="PinJoint2D" parent="RightArm"]
 position = Vector2(-42, 10)
@@ -91,7 +94,7 @@ shape = SubResource("RectangleShape2D_m557b")
 position = Vector2(-71, 1)
 collision_layer = 4
 collision_mask = 4
-mass = 0.4
+mass = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftArm"]
 position = Vector2(41, -14)
@@ -121,6 +124,7 @@ shape = SubResource("RectangleShape2D_h281g")
 position = Vector2(-40, -1)
 collision_layer = 0
 collision_mask = 0
+mass = 0.2
 
 [node name="ForGround" type="PinJoint2D" parent="LeftArm"]
 position = Vector2(48, 8)
