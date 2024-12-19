@@ -77,7 +77,8 @@ public partial class Player : RigidBody2D
 		If yes
 			Spawn a frozen object with no collision and attach a joint it it
 
-		If no and there is a joint and object remove them
+		If no
+			 and there is a joint and object remove them
 	*/
 	public void StickHook(){
 		if(Input.IsActionJustPressed("stickRightArm") && canRightGrapple){
