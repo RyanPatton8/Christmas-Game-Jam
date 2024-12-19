@@ -1,12 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://b00rmjo1ya24s"]
+[gd_scene load_steps=14 format=3 uid="uid://b00rmjo1ya24s"]
 
 [ext_resource type="Script" path="res://Scenes/Menus/menu.gd" id="1_twks6"]
+[ext_resource type="Texture2D" uid="uid://dyxgftrsj6jkf" path="res://Assets/Snow platform tileset/Background layers/layer 5 mountain and sky.png" id="2_78yed"]
+[ext_resource type="Texture2D" uid="uid://b6ydeop3x6ypg" path="res://Assets/Menu/Button.png" id="2_hh1wi"]
+[ext_resource type="Texture2D" uid="uid://bv01w0dacw4g0" path="res://Assets/Snow platform tileset/Background layers/layer 4 mountain.png" id="3_60025"]
+[ext_resource type="Texture2D" uid="uid://c13wb8k2t44ij" path="res://Assets/Menu/Button_Hover.png" id="3_np465"]
+[ext_resource type="Texture2D" uid="uid://sq1sl3jx4oq6" path="res://Assets/Snow platform tileset/Background layers/layer 3 grass.png" id="4_l8lek"]
+[ext_resource type="Texture2D" uid="uid://cjwegi78jbi85" path="res://Assets/Snow platform tileset/Background layers/layer 2 florest fog.png" id="5_gblex"]
+[ext_resource type="Texture2D" uid="uid://dqk314532fakg" path="res://Assets/Snow platform tileset/Background layers/layer 1 florest.png" id="6_86ons"]
+[ext_resource type="Texture2D" uid="uid://ch62i80tmq18p" path="res://Assets/char/Sprite-0003.png" id="9_7p5cq"]
+[ext_resource type="Texture2D" uid="uid://b6f5vkfkflfln" path="res://Assets/char/Sprite-0005.png" id="10_w3nnn"]
+[ext_resource type="Texture2D" uid="uid://cx7udxgcnx3lq" path="res://Assets/char/Sprite-0004.png" id="11_idewj"]
 
-[sub_resource type="SystemFont" id="SystemFont_6cb7b"]
+[sub_resource type="SystemFont" id="SystemFont_mukj3"]
 font_names = PackedStringArray("Agency FB")
+font_weight = 999
 
-[sub_resource type="SystemFont" id="SystemFont_rvvsr"]
+[sub_resource type="SystemFont" id="SystemFont_tl81h"]
 font_names = PackedStringArray("Agency FB")
+font_weight = 999
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -17,29 +29,138 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_twks6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 37.0
-offset_top = -33.0
-offset_right = 242.0
-offset_bottom = 33.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_78yed")
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_colors/font_color = Color(0.494118, 0, 0, 1)
-theme_override_fonts/font = SubResource("SystemFont_6cb7b")
-theme_override_font_sizes/font_size = 42
-text = "Play"
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_60025")
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_l8lek")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_gblex")
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = 18.0
+offset_right = 29.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_86ons")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -524.0
+offset_right = 564.0
+grow_vertical = 0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_colors/font_color = Color(0.494118, 0, 0, 1)
-theme_override_fonts/font = SubResource("SystemFont_rvvsr")
-theme_override_font_sizes/font_size = 42
-text = "Quit"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_hh1wi")
+texture_hover = ExtResource("3_np465")
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/StartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -25.5
+offset_right = 45.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_mukj3")
+theme_override_font_sizes/font_size = 50
+text = "START"
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="QuitButton" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_hh1wi")
+texture_hover = ExtResource("3_np465")
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/QuitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_tl81h")
+theme_override_font_sizes/font_size = 50
+text = "QUIT
+"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Sprite-0003" type="Sprite2D" parent="."]
+position = Vector2(930, 291)
+scale = Vector2(10, 10)
+texture = ExtResource("9_7p5cq")
+
+[node name="Sprite-0005" type="Sprite2D" parent="."]
+position = Vector2(620, 284)
+scale = Vector2(10, 10)
+texture = ExtResource("10_w3nnn")
+
+[node name="Sprite-0004" type="Sprite2D" parent="."]
+position = Vector2(770, 346)
+scale = Vector2(10, 10)
+texture = ExtResource("11_idewj")
