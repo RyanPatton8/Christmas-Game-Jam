@@ -1,12 +1,9 @@
 using Godot;
-using System;
-using System.Dynamic;
-using System.Numerics;
 
 public partial class Player : RigidBody2D
 {
 	//Arms and movement
-	private const float ROTATION_TORQUE = 250000.0f;
+	private const float ROTATION_TORQUE = 25000.0f;
 	[Export] public RigidBody2D RightArm {get; private set;}
 	[Export] public RigidBody2D LeftArm {get; private set;}
 	//Groundchecks and groundcheck boolean
@@ -22,8 +19,6 @@ public partial class Player : RigidBody2D
 	[Export] public Marker2D RightGrapplePos {get; private set;}
 	[Export] public Marker2D LeftGrapplePos {get; private set;}
 	private PackedScene GrapplePoint = (PackedScene)ResourceLoader.Load("res://Scenes/Player/GrapplePoint.tscn");
-
-	//Assigning Signals for each node
 	public override void _Ready()
 	{
 		RightGroundCheck.BodyEntered += AlterRightGrapple;
@@ -34,53 +29,6 @@ public partial class Player : RigidBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		ArmRotation();
-		CapAngularVelocity(RightArm);
-		CapAngularVelocity(LeftArm);
-		StickHook();
-	}
-	//Applies rotational torque based on input
-	private void ArmRotation()
-	{
-		if (Input.IsActionPressed("rotateRightArmPos"))
-		{
-			RightArm.ApplyTorque(ROTATION_TORQUE);
-		}
-		else if (Input.IsActionPressed("rotateRightArmNeg"))
-		{
-			RightArm.ApplyTorque(-ROTATION_TORQUE);
-		}
-		if (Input.IsActionPressed("rotateLeftArmPos"))
-		{
-			LeftArm.ApplyTorque(ROTATION_TORQUE);
-		}
-		else if (Input.IsActionPressed("rotateLeftArmNeg"))
-		{
-			LeftArm.ApplyTorque(-ROTATION_TORQUE);
-		}
-	}
-	//Caps the speed at which it can rotate but not the force it rotates with'
-	/* 
-		If the absolute value angular velocity of given arm is greater than what we want
-		set the angular velocity based on the direction gained from sign function which returns a value between -1 and 1 inclusive 
-	*/
-	private void CapAngularVelocity(RigidBody2D body)
-	{
-		const float maxAngularSpeed = 5.0f; // Limit angular speed
-		if (Mathf.Abs(body.AngularVelocity) > maxAngularSpeed)
-		{
-			body.AngularVelocity = Mathf.Sign(body.AngularVelocity) * maxAngularSpeed;
-		}
-	}
-	/*
-		Check if the arm is in a position in which it should be able to grab and if the player is wanting to grab it
-
-		If yes
-			Spawn a frozen object with no collision and attach a joint it it
-
-		If no
-			 and there is a joint and object remove them
-	*/
-	public void StickHook(){
 		if(Input.IsActionJustPressed("stickRightArm") && canRightGrapple){
 			rightGrappleBody = (RigidBody2D)GrapplePoint.Instantiate();
 			rightGrappleBody.GlobalPosition = RightGrapplePos.GlobalPosition; // Correct position
@@ -119,16 +67,43 @@ public partial class Player : RigidBody2D
 				leftGrappleBody = null;
 			}
 		}
+		CapAngularVelocity(RightArm);
+		CapAngularVelocity(LeftArm);
 	}
-	//On enter and exit set the bool for if the can grab to be the opposite of itself
+	private void ArmRotation()
+	{
+		if (Input.IsActionPressed("rotateRightArmPos"))
+		{
+			RightArm.ApplyTorque(ROTATION_TORQUE);
+		}
+		else if (Input.IsActionPressed("rotateRightArmNeg"))
+		{
+			RightArm.ApplyTorque(-ROTATION_TORQUE);
+		}
+		// Apply Torque for Left Arm Rotation
+		if (Input.IsActionPressed("rotateLeftArmPos"))
+		{
+			LeftArm.ApplyTorque(ROTATION_TORQUE);
+		}
+		else if (Input.IsActionPressed("rotateLeftArmNeg"))
+		{
+			LeftArm.ApplyTorque(-ROTATION_TORQUE);
+		}
+	}
+	private void CapAngularVelocity(RigidBody2D body)
+	{
+		const float maxAngularSpeed = 5.0f; // Limit angular speed
+		if (Mathf.Abs(body.AngularVelocity) > maxAngularSpeed)
+		{
+			body.AngularVelocity = Mathf.Sign(body.AngularVelocity) * maxAngularSpeed;
+		}
+	}
 	private void AlterLeftGrapple(Node2D body)
 	{
 		canLeftGrapple = !canLeftGrapple;
-		GD.Print("LeftGrapple" + canLeftGrapple);
 	}
 	private void AlterRightGrapple(Node2D body)
 	{
 		canRightGrapple = !canRightGrapple;
-		GD.Print("RightGrapple" + canRightGrapple);
 	}
 }

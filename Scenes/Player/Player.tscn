@@ -1,20 +1,22 @@
 [gd_scene load_steps=9 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
-[ext_resource type="Texture2D" uid="uid://brfrf0wloyxag" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
-[ext_resource type="Texture2D" uid="uid://cjxr7fiego3gr" path="res://Assets/char/Sprite-0003.png" id="3_i42bc"]
-[ext_resource type="Texture2D" uid="uid://scqrwb6ftmcg" path="res://Assets/char/Sprite-0005.png" id="4_ou5g2"]
+[ext_resource type="Texture2D" uid="uid://pf46mf6tdl5b" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
+[ext_resource type="Texture2D" uid="uid://ce07wnb6mdge0" path="res://Assets/char/Sprite-0003.png" id="3_i42bc"]
+[ext_resource type="Texture2D" uid="uid://d31017iorhrfi" path="res://Assets/char/Sprite-0005.png" id="4_ou5g2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xrqi"]
 radius = 14.0
 height = 80.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlcvj"]
+size = Vector2(24, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m557b"]
 size = Vector2(14, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ho1c8"]
+size = Vector2(24, 24)
 
 [node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook", "RightGrapplePos", "LeftGrapplePos")]
 mass = 0.8
@@ -67,6 +69,7 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/RightGroundCheck"]
+position = Vector2(-1, 0)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_dlcvj")
 
@@ -83,7 +86,7 @@ position = Vector2(-50, 10)
 shape = SubResource("RectangleShape2D_m557b")
 
 [node name="GrapplePlacementRight" type="Marker2D" parent="RightArm"]
-position = Vector2(-7, -16)
+position = Vector2(-13, -16)
 
 [node name="LeftArm" type="RigidBody2D" parent="."]
 position = Vector2(-71, 1)
@@ -111,7 +114,7 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/LeftGroundCheck"]
-position = Vector2(-1, -2)
+position = Vector2(0, -2)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_ho1c8")
 
@@ -130,4 +133,4 @@ position = Vector2(56, 8)
 shape = SubResource("RectangleShape2D_m557b")
 
 [node name="GrapplePlacementLeft" type="Marker2D" parent="LeftArm"]
-position = Vector2(15, -18)
+position = Vector2(21, -17)
