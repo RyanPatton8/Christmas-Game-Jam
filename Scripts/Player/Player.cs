@@ -3,7 +3,7 @@ using Godot;
 public partial class Player : RigidBody2D
 {
 	//Arms and movement
-	private const float ROTATION_TORQUE = 250000.0f;
+	private const float ROTATION_TORQUE = 100000.0f;
 	[Export] public RigidBody2D RightArm {get; private set;}
 	[Export] public RigidBody2D LeftArm {get; private set;}
 	//Groundchecks and groundcheck boolean
@@ -92,7 +92,7 @@ public partial class Player : RigidBody2D
     }
     private void CapAngularVelocity(RigidBody2D body)
     {
-        const float maxAngularSpeed = 5.0f; // Limit angular speed
+        const float maxAngularSpeed = 2.0f; // Limit angular speed
         if (Mathf.Abs(body.AngularVelocity) > maxAngularSpeed)
         {
             body.AngularVelocity = Mathf.Sign(body.AngularVelocity) * maxAngularSpeed;

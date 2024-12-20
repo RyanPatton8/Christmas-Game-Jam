@@ -1,22 +1,20 @@
 [gd_scene load_steps=8 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
-[ext_resource type="Texture2D" uid="uid://ce5soui76g4l1" path="res://Assets/icon.svg" id="1_qugp5"]
+[ext_resource type="Texture2D" uid="uid://cqfurpvouohg3" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
+[ext_resource type="Texture2D" uid="uid://bgl83ple5thoo" path="res://Assets/char/Sprite-0003.png" id="3_bnig2"]
+[ext_resource type="Texture2D" uid="uid://bnrrj8ue2tig2" path="res://Assets/char/Sprite-0005.png" id="4_bi6hx"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0o3qt"]
-radius = 60.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4bih"]
-size = Vector2(57.5, 20)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m41vs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d6iv0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qp7rg"]
-size = Vector2(58, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h281g"]
 
 [node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook", "RightGrapplePos", "LeftGrapplePos")]
+collision_layer = 9
+collision_mask = 9
+continuous_cd = 1
 script = ExtResource("1_oittr")
 RightArm = NodePath("RightArm")
 LeftArm = NodePath("LeftArm")
@@ -26,35 +24,36 @@ RightHook = NodePath("RightArm/ForGround")
 LeftHook = NodePath("LeftArm/ForGround")
 RightGrapplePos = NodePath("RightArm/GrapplePlacementRight")
 LeftGrapplePos = NodePath("LeftArm/GrapplePlacementLeft")
+metadata/_edit_horizontal_guides_ = [-42.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_qugp5")
+texture = ExtResource("2_el2lm")
 
 [node name="MainBody" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
-scale = Vector2(0.5, 0.5)
-shape = SubResource("CircleShape2D_0o3qt")
+position = Vector2(0, 4)
+scale = Vector2(0.5, 0.75)
+shape = SubResource("CapsuleShape2D_m41vs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="RightArm" type="RigidBody2D" parent="."]
-position = Vector2(65, -1)
-collision_layer = 3
-collision_mask = 3
+position = Vector2(17, 4)
+collision_layer = 10
+collision_mask = 10
+continuous_cd = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="RightArm"]
-position = Vector2(0.820541, 1.85965)
-scale = Vector2(0.497196, 0.200932)
-texture = ExtResource("1_qugp5")
+[node name="Sprite2D2" type="Sprite2D" parent="RightArm"]
+position = Vector2(1, -9)
+texture = ExtResource("3_bnig2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm"]
-position = Vector2(0.0705414, 1.85965)
-shape = SubResource("RectangleShape2D_x4bih")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightArm"]
+polygon = PackedVector2Array(-10, 3, -10, -1, -4, -1, -4, -17, 2, -25, 8, -25, 12, -18, 12, -13, 8, -21, 3, -21, -1, -16, -1, 3)
 
 [node name="ForBody" type="PinJoint2D" parent="RightArm"]
-position = Vector2(-31, 1)
+position = Vector2(-11, 1)
+scale = Vector2(0.5, 0.5)
 node_a = NodePath("../..")
 node_b = NodePath("..")
 disable_collision = false
@@ -62,40 +61,42 @@ angular_limit_lower = -0.785398
 angular_limit_upper = 0.785398
 
 [node name="RightGroundCheck" type="Area2D" parent="RightArm"]
-position = Vector2(32, 2)
-collision_layer = 8
-collision_mask = 8
+position = Vector2(11, -13)
+scale = Vector2(0.25, 0.25)
+collision_layer = 16
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/RightGroundCheck"]
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_d6iv0")
 
 [node name="ForGround" type="PinJoint2D" parent="RightArm"]
-position = Vector2(32, 2)
+position = Vector2(11, -13)
+scale = Vector2(0.5, 0.5)
 node_a = NodePath("..")
 angular_limit_enabled = true
 angular_limit_lower = -0.261799
 angular_limit_upper = 0.261799
 
 [node name="GrapplePlacementRight" type="Marker2D" parent="RightArm"]
-position = Vector2(63, 2)
+position = Vector2(13, -9)
 
 [node name="LeftArm" type="RigidBody2D" parent="."]
-position = Vector2(-71, 1)
+position = Vector2(-17, 5)
 collision_layer = 5
 collision_mask = 5
+continuous_cd = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftArm"]
-position = Vector2(3.82054, -0.140352)
-scale = Vector2(0.497196, 0.200932)
-texture = ExtResource("1_qugp5")
+position = Vector2(0, -11)
+texture = ExtResource("4_bi6hx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm"]
-position = Vector2(5.82054, -0.140352)
-shape = SubResource("RectangleShape2D_qp7rg")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftArm"]
+polygon = PackedVector2Array(10, 2, 10, -1, 4, -2, 4, -17, -3, -27, -7, -27, -12, -17, -10, -15, -6, -23, -3, -23, 1, -15, 1, 2)
 
 [node name="ForBody" type="PinJoint2D" parent="LeftArm"]
-position = Vector2(35, 0)
+position = Vector2(11, 0)
+scale = Vector2(0.5, 0.5)
 node_a = NodePath("../..")
 node_b = NodePath("..")
 disable_collision = false
@@ -103,20 +104,22 @@ angular_limit_lower = -0.785398
 angular_limit_upper = 0.785398
 
 [node name="LeftGroundCheck" type="Area2D" parent="LeftArm"]
-position = Vector2(-26, -1)
-collision_layer = 8
-collision_mask = 8
+position = Vector2(-10, -16)
+scale = Vector2(0.25, 0.25)
+collision_layer = 16
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/LeftGroundCheck"]
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_h281g")
 
 [node name="ForGround" type="PinJoint2D" parent="LeftArm"]
-position = Vector2(-26, -1)
+position = Vector2(-10, -16)
+scale = Vector2(0.5, 0.5)
 node_a = NodePath("..")
 angular_limit_enabled = true
 angular_limit_lower = -0.261799
 angular_limit_upper = 0.261799
 
 [node name="GrapplePlacementLeft" type="Marker2D" parent="LeftArm"]
-position = Vector2(-62, -1)
+position = Vector2(-14, -12)
