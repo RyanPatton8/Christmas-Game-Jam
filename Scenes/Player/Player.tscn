@@ -1,19 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx83b5dhk73dt"]
+[gd_scene load_steps=12 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
 [ext_resource type="Texture2D" uid="uid://pf46mf6tdl5b" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
-[ext_resource type="Texture2D" uid="uid://ce07wnb6mdge0" path="res://Assets/char/Sprite-0003.png" id="3_i42bc"]
-[ext_resource type="Texture2D" uid="uid://d31017iorhrfi" path="res://Assets/char/Sprite-0005.png" id="4_ou5g2"]
+[ext_resource type="Texture2D" uid="uid://dj2skob38ufpk" path="res://Assets/char/arml.png" id="3_otdx4"]
+[ext_resource type="Texture2D" uid="uid://vhsws7fswv0e" path="res://Assets/char/armr.png" id="4_r3u0t"]
+[ext_resource type="Texture2D" uid="uid://d20xwock1amv8" path="res://Assets/char/hand.png" id="5_dk0tp"]
+[ext_resource type="Texture2D" uid="uid://kil2m1eor1j8" path="res://Assets/char/candyr.png" id="6_kp7rs"]
+[ext_resource type="Texture2D" uid="uid://bm02827rh47x5" path="res://Assets/char/candl.png" id="7_x4xka"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xrqi"]
 radius = 14.0
 height = 80.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m557b"]
+size = Vector2(13, 6)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlcvj"]
 size = Vector2(24, 24)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m557b"]
-size = Vector2(14, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ho1c8"]
 size = Vector2(24, 24)
@@ -24,12 +27,12 @@ gravity_scale = 0.25
 script = ExtResource("1_oittr")
 RightArm = NodePath("RightArm")
 LeftArm = NodePath("LeftArm")
-RightGroundCheck = NodePath("RightArm/RightGroundCheck")
-LeftGroundCheck = NodePath("LeftArm/LeftGroundCheck")
-RightHook = NodePath("RightArm/ForGround")
-LeftHook = NodePath("LeftArm/ForGround")
-RightGrapplePos = NodePath("RightArm/GrapplePlacementRight")
-LeftGrapplePos = NodePath("LeftArm/GrapplePlacementLeft")
+RightGroundCheck = NodePath("")
+LeftGroundCheck = NodePath("")
+RightHook = NodePath("")
+LeftHook = NodePath("")
+RightGrapplePos = NodePath("")
+LeftGrapplePos = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -49,44 +52,16 @@ collision_layer = 2
 collision_mask = 2
 mass = 0.1
 
-[node name="Sprite2D" type="Sprite2D" parent="RightArm"]
-position = Vector2(-33, -10)
-scale = Vector2(2, 2)
-texture = ExtResource("3_i42bc")
-
-[node name="ForBody" type="PinJoint2D" parent="RightArm"]
-position = Vector2(-59, 10)
-scale = Vector2(0.5, 0.5)
-node_a = NodePath("../..")
-node_b = NodePath("..")
-disable_collision = false
-angular_limit_lower = -0.785398
-angular_limit_upper = 0.785398
-
-[node name="RightGroundCheck" type="Area2D" parent="RightArm"]
-position = Vector2(-12, -21)
-collision_layer = 8
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/RightGroundCheck"]
-position = Vector2(-1, 0)
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_dlcvj")
-
-[node name="HookCollision" type="CollisionPolygon2D" parent="RightArm"]
-polygon = PackedVector2Array(-38, 16, -42, 16, -42, -28, -40, -28, -40, -32, -38, -32, -38, -36, -36, -36, -36, -38, -34, -38, -34, -40, -32, -40, -32, -42, -30, -42, -30, -44, -18, -44, -18, -42, -16, -42, -16, -40, -14, -40, -14, -36, -12, -36, -12, -32, -10, -32, -10, -22, -12, -22, -12, -18, -14, -18, -14, -26, -16, -26, -16, -30, -18, -30, -18, -34, -20, -34, -20, -36, -30, -36, -30, -34, -32, -34, -32, -30, -34, -30, -34, -26, -36, -26, -36, -18, -38, -18)
-
-[node name="ForGround" type="PinJoint2D" parent="RightArm"]
-position = Vector2(-42, 10)
-scale = Vector2(0.5, 0.5)
-node_a = NodePath("..")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm"]
-position = Vector2(-50, 10)
+position = Vector2(-49.5, 10)
 shape = SubResource("RectangleShape2D_m557b")
 
-[node name="GrapplePlacementRight" type="Marker2D" parent="RightArm"]
-position = Vector2(-13, -16)
+[node name="PinJoint2D" type="PinJoint2D" parent="RightArm"]
+top_level = true
+position = Vector2(7, 9)
+scale = Vector2(0.5, 0.5)
+node_a = NodePath("../../handr")
+node_b = NodePath("..")
 
 [node name="LeftArm" type="RigidBody2D" parent="."]
 position = Vector2(-71, 1)
@@ -94,13 +69,8 @@ collision_layer = 4
 collision_mask = 4
 mass = 0.1
 
-[node name="Sprite2D" type="Sprite2D" parent="LeftArm"]
-position = Vector2(41, -14)
-scale = Vector2(2, 2)
-texture = ExtResource("4_ou5g2")
-
 [node name="ForBody" type="PinJoint2D" parent="LeftArm"]
-position = Vector2(65, 8)
+position = Vector2(64, 8)
 scale = Vector2(0.5, 0.5)
 node_a = NodePath("../..")
 node_b = NodePath("..")
@@ -108,29 +78,106 @@ disable_collision = false
 angular_limit_lower = -0.785398
 angular_limit_upper = 0.785398
 
-[node name="LeftGroundCheck" type="Area2D" parent="LeftArm"]
-position = Vector2(21, -21)
-collision_layer = 8
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/LeftGroundCheck"]
-position = Vector2(0, -2)
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_ho1c8")
-
-[node name="ForGround" type="PinJoint2D" parent="LeftArm"]
-position = Vector2(48, 8)
-scale = Vector2(0.5, 0.5)
-node_a = NodePath("..")
-
-[node name="HookCollision" type="CollisionPolygon2D" parent="LeftArm"]
-light_mask = 2
-visibility_layer = 2
-polygon = PackedVector2Array(44, 14, 48, 14, 48, -26, 48, -30, 46, -30, 46, -34, 44, -34, 44, -38, 42, -38, 42, -40, 40, -40, 40, -42, 38, -42, 38, -44, 36, -44, 36, -46, 26, -46, 26, -44, 24, -44, 24, -42, 22, -42, 22, -38, 20, -38, 20, -34, 18, -34, 18, -24, 20, -24, 20, -20, 22, -20, 22, -28, 24, -28, 24, -32, 26, -32, 26, -36, 28, -36, 28, -38, 36, -38, 36, -36, 38, -36, 38, -32, 40, -32, 40, -28, 42, -28, 42, -20, 44, -20)
-
 [node name="ArmCollision" type="CollisionShape2D" parent="LeftArm"]
 position = Vector2(56, 8)
 shape = SubResource("RectangleShape2D_m557b")
 
-[node name="GrapplePlacementLeft" type="Marker2D" parent="LeftArm"]
-position = Vector2(21, -17)
+[node name="Arml" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(15, 9)
+scale = Vector2(2, 2)
+texture = ExtResource("3_otdx4")
+
+[node name="Armr" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(-15, 9)
+scale = Vector2(2, 2)
+texture = ExtResource("4_r3u0t")
+
+[node name="handr" type="RigidBody2D" parent="."]
+
+[node name="Handr" type="Sprite2D" parent="handr"]
+position = Vector2(23, 9)
+scale = Vector2(2, 2)
+texture = ExtResource("5_dk0tp")
+
+[node name="Sprite2D" type="Sprite2D" parent="handr"]
+top_level = true
+position = Vector2(30, -15)
+scale = Vector2(2, 2)
+texture = ExtResource("6_kp7rs")
+
+[node name="ForBody" type="PinJoint2D" parent="handr"]
+position = Vector2(23, 9)
+scale = Vector2(0.5, 0.5)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+disable_collision = false
+angular_limit_lower = -0.785398
+angular_limit_upper = 0.785398
+
+[node name="RightGroundCheck" type="Area2D" parent="handr"]
+position = Vector2(-12, -21)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="handr/RightGroundCheck"]
+position = Vector2(62, -3)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_dlcvj")
+
+[node name="HookCollision" type="CollisionPolygon2D" parent="handr"]
+position = Vector2(63, -5)
+polygon = PackedVector2Array(-38, 16, -42, 16, -42, -28, -40, -28, -40, -32, -38, -32, -38, -36, -36, -36, -36, -38, -34, -38, -34, -40, -32, -40, -32, -42, -30, -42, -30, -44, -18, -44, -18, -42, -16, -42, -16, -40, -14, -40, -14, -36, -12, -36, -12, -32, -10, -32, -10, -22, -12, -22, -12, -18, -14, -18, -14, -26, -16, -26, -16, -30, -18, -30, -18, -34, -20, -34, -20, -36, -30, -36, -30, -34, -32, -34, -32, -30, -34, -30, -34, -26, -36, -26, -36, -18, -38, -18, -38, -9)
+
+[node name="ForGround" type="PinJoint2D" parent="handr"]
+position = Vector2(50, -24)
+scale = Vector2(0.5, 0.5)
+node_a = NodePath("..")
+
+[node name="GrapplePlacementRight" type="Marker2D" parent="handr"]
+position = Vector2(50, -24)
+
+[node name="handl" type="RigidBody2D" parent="."]
+
+[node name="Handl" type="Sprite2D" parent="handl"]
+position = Vector2(-23, 9)
+scale = Vector2(2, 2)
+texture = ExtResource("5_dk0tp")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="handl"]
+top_level = true
+position = Vector2(-23, 9)
+scale = Vector2(0.5, 0.5)
+node_a = NodePath("..")
+node_b = NodePath("../../LeftArm")
+
+[node name="HookCollision" type="CollisionPolygon2D" parent="handl"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-69, -3)
+polygon = PackedVector2Array(44, 14, 48, 14, 48, -6.65855, 48, -15, 48, -26, 48, -30, 46, -30, 46, -34, 44, -34, 44, -38, 42, -38, 42, -40, 40, -40, 40, -42, 38, -42, 38, -44, 36, -44, 36, -46, 26, -46, 26, -44, 24, -44, 24, -42, 22, -42, 22, -38, 20, -38, 20, -34, 18, -34, 18, -24, 20, -24, 20, -20, 22, -20, 22, -28, 24, -28, 24, -32, 26, -32, 26, -36, 28, -36, 28, -38, 36, -38, 36, -36, 38, -36, 38, -32, 40, -32, 40, -28, 42, -28, 42, -20, 44, -20, 44, 2)
+
+[node name="LeftGroundCheck" type="Area2D" parent="handl"]
+position = Vector2(-12, -24)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="handl/LeftGroundCheck"]
+position = Vector2(-36, -1)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_ho1c8")
+
+[node name="ForGround" type="PinJoint2D" parent="handl"]
+position = Vector2(-48, -25)
+scale = Vector2(0.5, 0.5)
+node_a = NodePath("..")
+
+[node name="GrapplePlacementLeft" type="Marker2D" parent="handl"]
+position = Vector2(-48, -20)
+
+[node name="Sprite2D" type="Sprite2D" parent="handl"]
+top_level = true
+position = Vector2(-28, -17)
+scale = Vector2(2, 2)
+texture = ExtResource("7_x4xka")
