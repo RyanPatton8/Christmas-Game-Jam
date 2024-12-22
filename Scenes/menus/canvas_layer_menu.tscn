@@ -1,0 +1,185 @@
+[gd_scene load_steps=14 format=3 uid="uid://boqrux0acrf0m"]
+
+[ext_resource type="Script" path="res://Scenes/menus/MainMenu.cs" id="1_56mu3"]
+[ext_resource type="Texture2D" uid="uid://dr4r57hcj4xoq" path="res://Assets/Snow platform tileset/Background layers/layer 5 mountain and sky.png" id="1_mqm0k"]
+[ext_resource type="Texture2D" uid="uid://cap8s1xlnrgwl" path="res://Assets/Snow platform tileset/Background layers/layer 4 mountain.png" id="2_qggwx"]
+[ext_resource type="Texture2D" uid="uid://b58om10unihw1" path="res://Assets/Snow platform tileset/Background layers/layer 3 grass.png" id="3_ij8eg"]
+[ext_resource type="Texture2D" uid="uid://dxckbcw07fg11" path="res://Assets/Snow platform tileset/Background layers/layer 2 florest fog.png" id="4_tk7oc"]
+[ext_resource type="Texture2D" uid="uid://dqrvusktieol1" path="res://Assets/Snow platform tileset/Background layers/layer 1 florest.png" id="5_63lvq"]
+[ext_resource type="Texture2D" uid="uid://cbvlyokhp4ltg" path="res://Assets/menu/Button.png" id="6_s247b"]
+[ext_resource type="Texture2D" uid="uid://dq2115mf20d1k" path="res://Assets/menu/Button_Hover.png" id="7_kn038"]
+[ext_resource type="Texture2D" uid="uid://bgl83ple5thoo" path="res://Assets/char/Sprite-0003.png" id="8_7u2ur"]
+[ext_resource type="Texture2D" uid="uid://bnrrj8ue2tig2" path="res://Assets/char/Sprite-0005.png" id="9_s5n30"]
+[ext_resource type="Texture2D" uid="uid://cqfurpvouohg3" path="res://Assets/char/Sprite-0004.png" id="10_le7fb"]
+
+[sub_resource type="SystemFont" id="SystemFont_nudo2"]
+font_names = PackedStringArray("Agency FB")
+font_weight = 999
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_omu86"]
+font_names = PackedStringArray("Agency FB")
+font_weight = 999
+subpixel_positioning = 0
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="menu" type="Control" parent="." node_paths=PackedStringArray("StartButton", "QuitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_56mu3")
+StartButton = NodePath("HBoxContainer/MarginContainer2/VBoxContainer/StartButton")
+QuitButton = NodePath("HBoxContainer/MarginContainer2/VBoxContainer/QuitButton")
+
+[node name="TextureRect" type="TextureRect" parent="menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mqm0k")
+
+[node name="TextureRect2" type="TextureRect" parent="menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qggwx")
+
+[node name="TextureRect3" type="TextureRect" parent="menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ij8eg")
+
+[node name="TextureRect4" type="TextureRect" parent="menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_tk7oc")
+
+[node name="TextureRect5" type="TextureRect" parent="menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_63lvq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menu"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="menu/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="StartButton" type="TextureButton" parent="menu/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_s247b")
+texture_hover = ExtResource("7_kn038")
+
+[node name="Label" type="Label" parent="menu/HBoxContainer/MarginContainer2/VBoxContainer/StartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -25.5
+offset_right = 45.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_nudo2")
+theme_override_font_sizes/font_size = 50
+text = "START"
+
+[node name="QuitButton" type="TextureButton" parent="menu/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_s247b")
+texture_hover = ExtResource("7_kn038")
+
+[node name="Label" type="Label" parent="menu/HBoxContainer/MarginContainer2/VBoxContainer/QuitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_omu86")
+theme_override_font_sizes/font_size = 50
+text = "QUIT
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="menu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Panel" type="Panel" parent="menu/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" type="TextureRect" parent="menu/HBoxContainer/MarginContainer/Panel"]
+layout_mode = 2
+offset_left = 165.0
+offset_top = -182.0
+offset_right = 188.0
+offset_bottom = -148.0
+scale = Vector2(10, 10)
+texture = ExtResource("8_7u2ur")
+
+[node name="TextureRect2" type="TextureRect" parent="menu/HBoxContainer/MarginContainer/Panel"]
+layout_mode = 2
+offset_left = -162.0
+offset_top = -202.0
+offset_right = -139.0
+offset_bottom = -168.0
+scale = Vector2(10, 10)
+texture = ExtResource("9_s5n30")
+
+[node name="TextureRect3" type="TextureRect" parent="menu/HBoxContainer/MarginContainer/Panel"]
+layout_mode = 2
+offset_left = -2.0
+offset_top = -156.0
+offset_right = 21.0
+offset_bottom = -122.0
+scale = Vector2(10, 10)
+texture = ExtResource("10_le7fb")
