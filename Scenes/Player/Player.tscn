@@ -31,7 +31,6 @@ metadata/_edit_horizontal_guides_ = [-42.0]
 texture = ExtResource("2_el2lm")
 
 [node name="MainBody" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("CapsuleShape2D_aodvs")
 
@@ -40,7 +39,7 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="RightArm" type="RigidBody2D" parent="."]
-position = Vector2(19, 4)
+position = Vector2(20, 4)
 collision_layer = 3
 collision_mask = 3
 continuous_cd = 2
@@ -69,7 +68,7 @@ collision_mask = 16
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/RightGroundCheck"]
-scale = Vector2(5, 5)
+scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_d6iv0")
 
 [node name="ForGround" type="PinJoint2D" parent="RightArm"]
@@ -84,7 +83,7 @@ angular_limit_upper = 0.261799
 position = Vector2(9, -11)
 
 [node name="LeftArm" type="RigidBody2D" parent="."]
-position = Vector2(-19, 5)
+position = Vector2(-20, 5)
 collision_layer = 12
 collision_mask = 12
 continuous_cd = 2
@@ -113,7 +112,7 @@ collision_mask = 32
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/LeftGroundCheck"]
-scale = Vector2(5, 5)
+scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_h281g")
 
 [node name="ForGround" type="PinJoint2D" parent="LeftArm"]
