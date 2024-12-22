@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx83b5dhk73dt"]
+[gd_scene load_steps=10 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
 [ext_resource type="Texture2D" uid="uid://cqfurpvouohg3" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
@@ -9,7 +9,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d6iv0"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvrtp"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h281g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwk78"]
 
 [node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook", "RightGrapplePos", "LeftGrapplePos")]
 collision_layer = 9
@@ -39,7 +43,7 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="RightArm" type="RigidBody2D" parent="."]
-position = Vector2(21, 4)
+position = Vector2(19, 4)
 collision_layer = 3
 collision_mask = 3
 continuous_cd = 2
@@ -75,16 +79,22 @@ shape = SubResource("RectangleShape2D_d6iv0")
 position = Vector2(11, -14)
 scale = Vector2(0.5, 0.5)
 node_a = NodePath("..")
-softness = 2.0
-angular_limit_enabled = true
+softness = 1.0
 angular_limit_lower = -0.261799
 angular_limit_upper = 0.261799
 
 [node name="GrapplePlacementRight" type="Marker2D" parent="RightArm"]
-position = Vector2(11, -9)
+position = Vector2(9, -11)
+
+[node name="GroundOutOfRange" type="Area2D" parent="RightArm"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/GroundOutOfRange"]
+position = Vector2(11, -13)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_jvrtp")
 
 [node name="LeftArm" type="RigidBody2D" parent="."]
-position = Vector2(-21, 5)
+position = Vector2(-19, 5)
 collision_layer = 12
 collision_mask = 12
 continuous_cd = 2
@@ -120,10 +130,16 @@ shape = SubResource("RectangleShape2D_h281g")
 position = Vector2(-10, -16)
 scale = Vector2(0.5, 0.5)
 node_a = NodePath("..")
-softness = 2.0
-angular_limit_enabled = true
+softness = 1.0
 angular_limit_lower = -0.261799
 angular_limit_upper = 0.261799
 
 [node name="GrapplePlacementLeft" type="Marker2D" parent="LeftArm"]
-position = Vector2(-10, -10)
+position = Vector2(-8, -13)
+
+[node name="GroundOutOfRange" type="Area2D" parent="LeftArm"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/GroundOutOfRange"]
+position = Vector2(-10, -14)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_hwk78")

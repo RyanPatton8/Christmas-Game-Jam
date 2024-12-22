@@ -9,6 +9,8 @@ public partial class Player : RigidBody2D
 	//Groundchecks and groundcheck boolean
 	[Export] public Area2D RightGroundCheck {get; private set;}
 	[Export] public Area2D LeftGroundCheck {get; private set;}
+	[Export] public Area2D RightGroundOutRange {get; private set;}
+	[Export] public Area2D LeftGroundOutRange {get; private set;}
 	private bool canRightGrapple = false;
 	private bool canLeftGrapple = false;
 	private RigidBody2D rightGrappleBody = null;
@@ -25,8 +27,8 @@ public partial class Player : RigidBody2D
 	{
 		RightGroundCheck.BodyEntered += AlterRightGrapple;
 		LeftGroundCheck.BodyEntered += AlterLeftGrapple;
-		RightGroundCheck.BodyExited += AlterRightGrapple;
-		LeftGroundCheck.BodyExited += AlterLeftGrapple;
+		RightGroundOutRange.BodyExited += AlterRightGrapple;
+		LeftGroundOutRange.BodyExited += AlterLeftGrapple;
 	}
 	public override void _PhysicsProcess(double delta)
 	{
@@ -87,7 +89,7 @@ public partial class Player : RigidBody2D
 			// Attach the PinJoint to the grapple point
 			RightHook.NodeB = rightGrappleBody.GetPath();
 		}
-		else if(Input.IsActionJustReleased("stickRightArm")){
+		else if(Input.IsActionJustReleased("stickRightArm") || !canLeftGrapple){
 			if (rightGrappleBody != null)
 			{
 				GetTree().Root.RemoveChild(rightGrappleBody);
@@ -119,12 +121,18 @@ public partial class Player : RigidBody2D
 	//On enter and exit set the bool for if the can grab to be the opposite of itself
 	private void AlterLeftGrapple(Node2D body)
 	{
-		canLeftGrapple = !canLeftGrapple;
-		GD.Print("LeftGrapple" + canLeftGrapple);
+		canLeftGrapple = true;
 	}
 	private void AlterRightGrapple(Node2D body)
 	{
-		canRightGrapple = !canRightGrapple;
-		GD.Print("RightGrapple" + canRightGrapple);
+		canRightGrapple = true;
+	}
+	private void AlterLeftGrappleRelease(Node2D body)
+	{
+		canLeftGrapple = false;
+	}
+	private void AlterRightGrappleRelease(Node2D body)
+	{
+		canRightGrapple = false;
 	}
 }
