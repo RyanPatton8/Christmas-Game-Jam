@@ -15,7 +15,7 @@ height = 37.3333
 [node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook", "RightGrapplePos", "LeftGrapplePos")]
 collision_layer = 9
 collision_mask = 9
-continuous_cd = 2
+continuous_cd = 1
 script = ExtResource("1_oittr")
 RightArm = NodePath("RightArm")
 LeftArm = NodePath("LeftArm")

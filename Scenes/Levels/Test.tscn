@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://bgsfuy0vnv0gu"]
 
-[ext_resource type="Texture2D" uid="uid://dt8hcu4wl2iqg" path="res://Assets/Snow platform tileset/Snow platform tileset.png" id="1_gmhxm"]
+[ext_resource type="Texture2D" uid="uid://c0a7s142kf1re" path="res://Assets/Snow platform tileset/Snow platform tileset.png" id="1_gmhxm"]
 [ext_resource type="PackedScene" uid="uid://dx83b5dhk73dt" path="res://Scenes/Player/Player.tscn" id="2_notae"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o8l07"]

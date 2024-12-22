@@ -1,9 +1,9 @@
-class_name CustomMenu
+class_name CustomMenu1
 extends Control
 	
 @onready var start_button: TextureButton = $HBoxContainer/VBoxContainer/StartButton as TextureButton
 @onready var quit_button: TextureButton = $HBoxContainer/VBoxContainer/QuitButton as TextureButton
-@onready var start_level = preload("res://Scenes/Levels/Test.tscn") as PackedScene
+@onready var start_level = preload("res://Scenes/Levels/main_level.tscn") as PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
