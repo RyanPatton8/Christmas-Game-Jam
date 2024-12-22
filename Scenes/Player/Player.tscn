@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx83b5dhk73dt"]
+[gd_scene load_steps=8 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
 [ext_resource type="Texture2D" uid="uid://cqfurpvouohg3" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
@@ -10,13 +10,9 @@ height = 37.3333
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d6iv0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvrtp"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h281g"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwk78"]
-
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightGroundOutRange", "LeftGroundOutRange", "RightHook", "LeftHook", "RightGrapplePos", "LeftGrapplePos")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook", "RightGrapplePos", "LeftGrapplePos")]
 collision_layer = 9
 collision_mask = 9
 continuous_cd = 2
@@ -25,8 +21,6 @@ RightArm = NodePath("RightArm")
 LeftArm = NodePath("LeftArm")
 RightGroundCheck = NodePath("RightArm/RightGroundCheck")
 LeftGroundCheck = NodePath("LeftArm/LeftGroundCheck")
-RightGroundOutRange = NodePath("RightArm/GroundOutOfRange")
-LeftGroundOutRange = NodePath("LeftArm/GroundOutOfRange")
 RightHook = NodePath("RightArm/ForGround")
 LeftHook = NodePath("LeftArm/ForGround")
 RightGrapplePos = NodePath("RightArm/GrapplePlacementRight")
@@ -37,7 +31,6 @@ metadata/_edit_horizontal_guides_ = [-42.0]
 texture = ExtResource("2_el2lm")
 
 [node name="MainBody" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("CapsuleShape2D_aodvs")
 
@@ -46,7 +39,7 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="RightArm" type="RigidBody2D" parent="."]
-position = Vector2(19, 4)
+position = Vector2(20, 4)
 collision_layer = 3
 collision_mask = 3
 continuous_cd = 2
@@ -89,17 +82,8 @@ angular_limit_upper = 0.261799
 [node name="GrapplePlacementRight" type="Marker2D" parent="RightArm"]
 position = Vector2(9, -11)
 
-[node name="GroundOutOfRange" type="Area2D" parent="RightArm"]
-collision_layer = 32
-collision_mask = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/GroundOutOfRange"]
-position = Vector2(11, -13)
-scale = Vector2(1.5, 1.5)
-shape = SubResource("RectangleShape2D_jvrtp")
-
 [node name="LeftArm" type="RigidBody2D" parent="."]
-position = Vector2(-19, 5)
+position = Vector2(-20, 5)
 collision_layer = 12
 collision_mask = 12
 continuous_cd = 2
@@ -123,8 +107,8 @@ angular_limit_upper = 0.785398
 [node name="LeftGroundCheck" type="Area2D" parent="LeftArm"]
 position = Vector2(-10, -14)
 scale = Vector2(0.25, 0.25)
-collision_layer = 128
-collision_mask = 128
+collision_layer = 32
+collision_mask = 32
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/LeftGroundCheck"]
@@ -141,12 +125,3 @@ angular_limit_upper = 0.261799
 
 [node name="GrapplePlacementLeft" type="Marker2D" parent="LeftArm"]
 position = Vector2(-8, -13)
-
-[node name="GroundOutOfRange" type="Area2D" parent="LeftArm"]
-collision_layer = 64
-collision_mask = 64
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/GroundOutOfRange"]
-position = Vector2(-10, -14)
-scale = Vector2(1.5, 1.5)
-shape = SubResource("RectangleShape2D_hwk78")
