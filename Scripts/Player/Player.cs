@@ -11,6 +11,8 @@ public partial class Player : RigidBody2D
 	[Export] public Area2D LeftGroundCheck {get; private set;}
 	private bool canRightGrapple = false;
 	private bool canLeftGrapple = false;
+	private bool grappleRPlaced = false;
+	private bool grappleLPlaced = false;
 	private RigidBody2D rightGrappleBody = null;
 	private RigidBody2D leftGrappleBody = null;
 	//anchorpoints for hooks
@@ -77,7 +79,7 @@ public partial class Player : RigidBody2D
 			 and there is a joint and object remove them
 	*/
 	public void StickHook(){
-		if(Input.IsActionJustPressed("stickRightArm") && canRightGrapple){
+		if(Input.IsActionPressed("stickRightArm") && canRightGrapple && !grappleRPlaced){
 			rightGrappleBody = (RigidBody2D)GrapplePoint.Instantiate();
 			rightGrappleBody.GlobalPosition = RightGrapplePos.GlobalPosition; // Correct position
 
@@ -86,6 +88,7 @@ public partial class Player : RigidBody2D
 
 			// Attach the PinJoint to the grapple point
 			RightHook.NodeB = rightGrappleBody.GetPath();
+			grappleRPlaced = true;
 		}
 		else if(Input.IsActionJustReleased("stickRightArm")){
 			if (rightGrappleBody != null)
@@ -94,9 +97,10 @@ public partial class Player : RigidBody2D
 				RightHook.NodeB = null;
 				rightGrappleBody.CallDeferred("queue_free");
 				rightGrappleBody = null; // Clear reference
+				grappleRPlaced = false;
 			}
 		}
-		if(Input.IsActionJustPressed("stickLeftArm") && canLeftGrapple){
+		if(Input.IsActionPressed("stickLeftArm") && canLeftGrapple && !grappleLPlaced){
 			leftGrappleBody = (RigidBody2D)GrapplePoint.Instantiate();
 			leftGrappleBody.GlobalPosition = LeftGrapplePos.GlobalPosition; // Correct position
 
@@ -105,6 +109,7 @@ public partial class Player : RigidBody2D
 
 			// Attach the PinJoint to the grapple point
 			LeftHook.NodeB = leftGrappleBody.GetPath();
+			grappleLPlaced = true;
 		}
 		else if(Input.IsActionJustReleased("stickLeftArm")){
 			if (leftGrappleBody != null)
@@ -113,6 +118,7 @@ public partial class Player : RigidBody2D
 				LeftHook.NodeB = null;
 				leftGrappleBody.CallDeferred("queue_free");
 				leftGrappleBody = null;
+				grappleLPlaced = false;
 			}
 		}
 	}
