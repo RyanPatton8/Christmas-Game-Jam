@@ -27,8 +27,8 @@ public partial class Player : RigidBody2D
 	{
 		RightGroundCheck.BodyEntered += AlterRightGrapple;
 		LeftGroundCheck.BodyEntered += AlterLeftGrapple;
-		RightGroundOutRange.BodyExited += AlterRightGrapple;
-		LeftGroundOutRange.BodyExited += AlterLeftGrapple;
+		RightGroundOutRange.BodyExited += AlterRightGrappleRelease;
+		LeftGroundOutRange.BodyExited += AlterLeftGrappleRelease;
 	}
 	public override void _PhysicsProcess(double delta)
 	{

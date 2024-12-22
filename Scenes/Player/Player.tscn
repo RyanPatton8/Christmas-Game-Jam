@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bnrrj8ue2tig2" path="res://Assets/char/Sprite-0005.png" id="4_bi6hx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aodvs"]
+height = 37.3333
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d6iv0"]
 
@@ -34,7 +35,7 @@ metadata/_edit_horizontal_guides_ = [-42.0]
 texture = ExtResource("2_el2lm")
 
 [node name="MainBody" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, -1)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("CapsuleShape2D_aodvs")
 
