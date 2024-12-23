@@ -1,3 +1,4 @@
+using System.Dynamic;
 using Godot;
 
 public partial class Player : RigidBody2D
@@ -20,15 +21,18 @@ public partial class Player : RigidBody2D
 	[Export] public PinJoint2D LeftHook {get; private set;}
 	[Export] public Marker2D RightGrapplePos {get; private set;}
 	[Export] public Marker2D LeftGrapplePos {get; private set;}
+	[Export] public AudioStreamPlayer2D Sfx {get; private set;}
+	[Export] public AudioStream Collision {get; private set;}
+	[Export] public AudioStream Grapple {get; private set;}
 	private PackedScene GrapplePoint = (PackedScene)ResourceLoader.Load("res://Scenes/Player/GrapplePoint.tscn");
 
 	//Assigning Signals for each node
 	public override void _Ready()
 	{
-		RightGroundCheck.BodyEntered += AlterRightGrapple;
-		LeftGroundCheck.BodyEntered += AlterLeftGrapple;
-		RightGroundCheck.BodyExited += AlterRightGrapple;
-		LeftGroundCheck.BodyExited += AlterLeftGrapple;
+		RightGroundCheck.BodyEntered += AllowRightGrapple;
+		LeftGroundCheck.BodyEntered += AllowLeftGrapple;
+		RightGroundCheck.BodyExited += DenyRightGrapple;
+		LeftGroundCheck.BodyExited += DenyLeftGrapple;
 	}
 	public override void _PhysicsProcess(double delta)
 	{
@@ -89,6 +93,8 @@ public partial class Player : RigidBody2D
 			// Attach the PinJoint to the grapple point
 			RightHook.NodeB = rightGrappleBody.GetPath();
 			grappleRPlaced = true;
+			Sfx.Stream = Grapple;
+			Sfx.Play();
 		}
 		else if(Input.IsActionJustReleased("stickRightArm")){
 			if (rightGrappleBody != null)
@@ -110,6 +116,8 @@ public partial class Player : RigidBody2D
 			// Attach the PinJoint to the grapple point
 			LeftHook.NodeB = leftGrappleBody.GetPath();
 			grappleLPlaced = true;
+			Sfx.Stream = Grapple;
+			Sfx.Play();
 		}
 		else if(Input.IsActionJustReleased("stickLeftArm")){
 			if (leftGrappleBody != null)
@@ -123,12 +131,25 @@ public partial class Player : RigidBody2D
 		}
 	}
 	//On enter and exit set the bool for if the can grab to be the opposite of itself
-	private void AlterLeftGrapple(Node2D body)
+	private void AllowLeftGrapple(Node2D body)
 	{
-		canLeftGrapple = !canLeftGrapple;
+		canLeftGrapple = true;
+		Sfx.Stream = Collision;
+		Sfx.Play();
 	}
-	private void AlterRightGrapple(Node2D body)
+	private void AllowRightGrapple(Node2D body)
 	{
-		canRightGrapple = !canRightGrapple;
+		canRightGrapple = true;
+		Sfx.Stream = Collision;
+		Sfx.Play();
+	}
+
+	private void DenyLeftGrapple(Node2D body)
+	{
+		canLeftGrapple = false;
+	}
+	private void DenyRightGrapple(Node2D body)
+	{
+		canRightGrapple = false;
 	}
 }

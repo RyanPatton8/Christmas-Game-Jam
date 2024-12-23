@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx83b5dhk73dt"]
+[gd_scene load_steps=10 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
 [ext_resource type="Texture2D" uid="uid://cqfurpvouohg3" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
+[ext_resource type="AudioStream" uid="uid://cysqvcktq00ro" path="res://Assets/audio/405241__wildhorsemann__automatic-ice-pick.wav" id="2_v2w3f"]
 [ext_resource type="Texture2D" uid="uid://bgl83ple5thoo" path="res://Assets/char/Sprite-0003.png" id="3_bnig2"]
+[ext_resource type="AudioStream" uid="uid://dlh3vkc2y3ovg" path="res://Assets/audio/743261__qubodup__small-but-heavy-cast-iron-objects-touching-sound.wav" id="3_lij2v"]
 [ext_resource type="Texture2D" uid="uid://bnrrj8ue2tig2" path="res://Assets/char/Sprite-0005.png" id="4_bi6hx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aodvs"]
@@ -13,7 +15,7 @@ height = 37.3333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gmgm6"]
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook", "RightGrapplePos", "LeftGrapplePos")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook", "RightGrapplePos", "LeftGrapplePos", "Sfx")]
 collision_layer = 9
 collision_mask = 9
 continuous_cd = 2
@@ -26,6 +28,9 @@ RightHook = NodePath("RightArm/ForGround")
 LeftHook = NodePath("LeftArm/ForGround")
 RightGrapplePos = NodePath("RightArm/GrapplePlacementRight")
 LeftGrapplePos = NodePath("LeftArm/GrapplePlacementLeft")
+Sfx = NodePath("AudioStreamPlayer2D")
+Collision = ExtResource("2_v2w3f")
+Grapple = ExtResource("3_lij2v")
 metadata/_edit_horizontal_guides_ = [-42.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -126,3 +131,6 @@ angular_limit_upper = 0.261799
 
 [node name="GrapplePlacementLeft" type="Marker2D" parent="LeftArm"]
 position = Vector2(-8, -13)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -15.0
