@@ -1,16 +1,16 @@
 [gd_scene load_steps=14 format=3 uid="uid://boqrux0acrf0m"]
 
 [ext_resource type="Script" path="res://Scenes/menus/MainMenu.cs" id="1_56mu3"]
-[ext_resource type="Texture2D" uid="uid://vguqmfctammk" path="res://Assets/Snow platform tileset/Background layers/layer 5 mountain and sky.png" id="1_mqm0k"]
-[ext_resource type="Texture2D" uid="uid://xbofme55qk4o" path="res://Assets/Snow platform tileset/Background layers/layer 4 mountain.png" id="2_qggwx"]
-[ext_resource type="Texture2D" uid="uid://bfva4u2g0ohhq" path="res://Assets/Snow platform tileset/Background layers/layer 3 grass.png" id="3_ij8eg"]
-[ext_resource type="Texture2D" uid="uid://cu03paqbb7mm1" path="res://Assets/Snow platform tileset/Background layers/layer 2 florest fog.png" id="4_tk7oc"]
-[ext_resource type="Texture2D" uid="uid://bb11q1wf1ke7b" path="res://Assets/Snow platform tileset/Background layers/layer 1 florest.png" id="5_63lvq"]
-[ext_resource type="Texture2D" uid="uid://6htogx7getkf" path="res://Assets/menu/Button.png" id="6_s247b"]
-[ext_resource type="Texture2D" uid="uid://q8yr4qwjg02g" path="res://Assets/menu/Button_Hover.png" id="7_kn038"]
-[ext_resource type="Texture2D" uid="uid://d18jwl7i4yyvc" path="res://Assets/char/Sprite-0003.png" id="8_7u2ur"]
-[ext_resource type="Texture2D" uid="uid://byokqwolwko10" path="res://Assets/char/Sprite-0005.png" id="9_s5n30"]
-[ext_resource type="Texture2D" uid="uid://v7eivn6nabg7" path="res://Assets/char/Sprite-0004.png" id="10_le7fb"]
+[ext_resource type="Texture2D" uid="uid://dr4r57hcj4xoq" path="res://Assets/Snow platform tileset/Background layers/layer 5 mountain and sky.png" id="1_mqm0k"]
+[ext_resource type="Texture2D" uid="uid://cap8s1xlnrgwl" path="res://Assets/Snow platform tileset/Background layers/layer 4 mountain.png" id="2_qggwx"]
+[ext_resource type="Texture2D" uid="uid://b58om10unihw1" path="res://Assets/Snow platform tileset/Background layers/layer 3 grass.png" id="3_ij8eg"]
+[ext_resource type="Texture2D" uid="uid://dxckbcw07fg11" path="res://Assets/Snow platform tileset/Background layers/layer 2 florest fog.png" id="4_tk7oc"]
+[ext_resource type="Texture2D" uid="uid://dqrvusktieol1" path="res://Assets/Snow platform tileset/Background layers/layer 1 florest.png" id="5_63lvq"]
+[ext_resource type="Texture2D" uid="uid://cbvlyokhp4ltg" path="res://Assets/menu/Button.png" id="6_s247b"]
+[ext_resource type="Texture2D" uid="uid://dq2115mf20d1k" path="res://Assets/menu/Button_Hover.png" id="7_kn038"]
+[ext_resource type="Texture2D" uid="uid://bgl83ple5thoo" path="res://Assets/char/Sprite-0003.png" id="8_7u2ur"]
+[ext_resource type="Texture2D" uid="uid://bnrrj8ue2tig2" path="res://Assets/char/Sprite-0005.png" id="9_s5n30"]
+[ext_resource type="Texture2D" uid="uid://cqfurpvouohg3" path="res://Assets/char/Sprite-0004.png" id="10_le7fb"]
 
 [sub_resource type="SystemFont" id="SystemFont_nudo2"]
 font_names = PackedStringArray("Agency FB")
@@ -24,6 +24,56 @@ subpixel_positioning = 0
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(1200, 0)
+autoscroll = Vector2(10, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(552, 296)
+scale = Vector2(2, 2)
+texture = ExtResource("1_mqm0k")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+repeat_size = Vector2(1200, 0)
+autoscroll = Vector2(15, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(552, 296)
+scale = Vector2(2, 2)
+texture = ExtResource("2_qggwx")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+repeat_size = Vector2(1200, 0)
+autoscroll = Vector2(20, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(552, 296)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ij8eg")
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+repeat_size = Vector2(1200, 0)
+autoscroll = Vector2(25, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
+position = Vector2(552, 296)
+scale = Vector2(2, 2)
+texture = ExtResource("4_tk7oc")
+
+[node name="Parallax2D5" type="Parallax2D" parent="."]
+repeat_size = Vector2(1200, 0)
+autoscroll = Vector2(30, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D5"]
+position = Vector2(552, 296)
+scale = Vector2(2, 2)
+texture = ExtResource("5_63lvq")
+
 [node name="menu" type="Control" parent="." node_paths=PackedStringArray("StartButton", "QuitButton")]
 layout_mode = 3
 anchors_preset = 15
@@ -36,51 +86,6 @@ size_flags_vertical = 3
 script = ExtResource("1_56mu3")
 StartButton = NodePath("HBoxContainer/MarginContainer2/VBoxContainer/StartButton")
 QuitButton = NodePath("HBoxContainer/MarginContainer2/VBoxContainer/QuitButton")
-
-[node name="TextureRect" type="TextureRect" parent="menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_mqm0k")
-
-[node name="TextureRect2" type="TextureRect" parent="menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_qggwx")
-
-[node name="TextureRect3" type="TextureRect" parent="menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_ij8eg")
-
-[node name="TextureRect4" type="TextureRect" parent="menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_tk7oc")
-
-[node name="TextureRect5" type="TextureRect" parent="menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_63lvq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="menu"]
 custom_minimum_size = Vector2(400, 400)
