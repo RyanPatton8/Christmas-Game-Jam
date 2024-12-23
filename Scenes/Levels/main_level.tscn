@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://ecyj5mcxxh14"]
+[gd_scene load_steps=30 format=4 uid="uid://ecyj5mcxxh14"]
 
 [ext_resource type="Texture2D" uid="uid://c0a7s142kf1re" path="res://Assets/Snow platform tileset/Snow platform tileset.png" id="1_8nx41"]
 [ext_resource type="Script" path="res://Scenes/Levels/WorldBorder.cs" id="1_orvhj"]
@@ -376,6 +376,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhbyf"]
 size = Vector2(1080, 806)
 
+[sub_resource type="LabelSettings" id="LabelSettings_73583"]
+font_size = 12
+
 [node name="MainLevel" type="Node2D"]
 
 [node name="WorldBorder" type="Area2D" parent="."]
@@ -583,3 +586,18 @@ position = Vector2(4, 42)
 shape = SubResource("RectangleShape2D_xhbyf")
 
 [node name="CheckPoints" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 212.0
+offset_top = -1748.0
+offset_right = 368.0
+offset_bottom = -1725.0
+text = "YOURE AN ELF NOW"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 220.0
+offset_top = -1722.0
+offset_right = 475.0
+offset_bottom = -1699.0
+text = "Enter my shop to return to menu"
+label_settings = SubResource("LabelSettings_73583")
