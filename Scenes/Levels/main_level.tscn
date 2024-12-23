@@ -532,7 +532,7 @@ tile_map_data = PackedByteArray("AAAPAP3/AAABAAYAAAAQAP3/AAACAAYAAAAOAPz/AAAAAAU
 tile_set = SubResource("TileSet_emfua")
 
 [node name="Player" parent="." instance=ExtResource("2_2art2")]
-position = Vector2(877, -306)
+position = Vector2(102, -102)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(240, -1679)

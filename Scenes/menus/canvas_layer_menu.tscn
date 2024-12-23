@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://boqrux0acrf0m"]
+[gd_scene load_steps=15 format=3 uid="uid://boqrux0acrf0m"]
 
 [ext_resource type="Script" path="res://Scenes/menus/MainMenu.cs" id="1_56mu3"]
 [ext_resource type="Texture2D" uid="uid://dr4r57hcj4xoq" path="res://Assets/Snow platform tileset/Background layers/layer 5 mountain and sky.png" id="1_mqm0k"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bgl83ple5thoo" path="res://Assets/char/Sprite-0003.png" id="8_7u2ur"]
 [ext_resource type="Texture2D" uid="uid://bnrrj8ue2tig2" path="res://Assets/char/Sprite-0005.png" id="9_s5n30"]
 [ext_resource type="Texture2D" uid="uid://cqfurpvouohg3" path="res://Assets/char/Sprite-0004.png" id="10_le7fb"]
+[ext_resource type="AudioStream" uid="uid://cphx05opq6qy3" path="res://Scenes/menus/Goblins to Elves on Christmas Eve.mp3" id="12_2mhn2"]
 
 [sub_resource type="SystemFont" id="SystemFont_nudo2"]
 font_names = PackedStringArray("Agency FB")
@@ -221,3 +222,8 @@ theme_override_font_sizes/font_size = 50
 text = "Christmas Climb"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_2mhn2")
+volume_db = -10.0
+autoplay = true
