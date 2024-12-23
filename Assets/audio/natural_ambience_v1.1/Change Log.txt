@@ -1,0 +1,4 @@
+Version 1.1
+- added ocean_04_slow.wav
+- added ocean_waves_slow.wav
+- fixed an issue with the forest_night_crickets_02.wav not looping properly
