@@ -1,7 +1,6 @@
-[gd_scene load_steps=30 format=4 uid="uid://ecyj5mcxxh14"]
+[gd_scene load_steps=28 format=4 uid="uid://ecyj5mcxxh14"]
 
 [ext_resource type="Texture2D" uid="uid://c0a7s142kf1re" path="res://Assets/Snow platform tileset/Snow platform tileset.png" id="1_8nx41"]
-[ext_resource type="Script" path="res://Scenes/Levels/WorldBorder.cs" id="1_orvhj"]
 [ext_resource type="Texture2D" uid="uid://dr4r57hcj4xoq" path="res://Assets/Snow platform tileset/Background layers/layer 5 mountain and sky.png" id="1_yk4pf"]
 [ext_resource type="PackedScene" uid="uid://dx83b5dhk73dt" path="res://Scenes/Player/Player.tscn" id="2_2art2"]
 [ext_resource type="Texture2D" uid="uid://cap8s1xlnrgwl" path="res://Assets/Snow platform tileset/Background layers/layer 4 mountain.png" id="2_xvv2i"]
@@ -13,9 +12,6 @@
 [ext_resource type="Script" path="res://Scenes/Levels/AmbientSounds.cs" id="11_qm01p"]
 [ext_resource type="AudioStream" uid="uid://co33wd7u6pprv" path="res://Assets/audio/natural_ambience_v1.1/loops/birds_01.wav" id="12_wwo75"]
 [ext_resource type="AudioStream" uid="uid://i403hyc5i10q" path="res://Assets/audio/natural_ambience_v1.1/loops/wind_01.wav" id="13_m75gq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3oqdj"]
-size = Vector2(1422, 2112)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v4s1r"]
 friction = 0.01
@@ -374,19 +370,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0y2w4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhbyf"]
-size = Vector2(1080, 806)
+size = Vector2(1080, 600)
 
 [sub_resource type="LabelSettings" id="LabelSettings_73583"]
 font_size = 12
 
 [node name="MainLevel" type="Node2D"]
-
-[node name="WorldBorder" type="Area2D" parent="."]
-script = ExtResource("1_orvhj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder"]
-position = Vector2(575, -902)
-shape = SubResource("RectangleShape2D_3oqdj")
 
 [node name="bruh" type="Node2D" parent="."]
 scale = Vector2(10, 10)
@@ -543,7 +532,7 @@ tile_map_data = PackedByteArray("AAAPAP3/AAABAAYAAAAQAP3/AAACAAYAAAAOAPz/AAAAAAU
 tile_set = SubResource("TileSet_emfua")
 
 [node name="Player" parent="." instance=ExtResource("2_2art2")]
-position = Vector2(1018, -972)
+position = Vector2(877, -306)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(240, -1679)
@@ -575,17 +564,16 @@ volume_db = -35.0
 position = Vector2(575, -332)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SoundAreas/Forest"]
-position = Vector2(4, -55)
+position = Vector2(4, 54)
+scale = Vector2(1, 0.996253)
 shape = SubResource("RectangleShape2D_xhbyf")
 
 [node name="Mountain" type="Area2D" parent="SoundAreas"]
 position = Vector2(572, -1242)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SoundAreas/Mountain"]
-position = Vector2(4, 42)
+position = Vector2(7, 337)
 shape = SubResource("RectangleShape2D_xhbyf")
-
-[node name="CheckPoints" type="Node" parent="."]
 
 [node name="Label" type="Label" parent="."]
 offset_left = 212.0
