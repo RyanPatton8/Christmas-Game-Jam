@@ -12,7 +12,10 @@ public partial class ReturnHome : Area2D
 	private void BackToMenu(Node2D body)
 	{
 		body.CallDeferred("queue_free");
+		CallDeferred(nameof(ChangeScene));
+	}
+	private void ChangeScene()
+	{
 		GetTree().ChangeSceneToFile("res://Scenes/menus/canvas_layer_menu.tscn");
 	}
-
 }
