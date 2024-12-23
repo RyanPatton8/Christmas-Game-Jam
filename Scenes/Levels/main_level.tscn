@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://ecyj5mcxxh14"]
+[gd_scene load_steps=23 format=4 uid="uid://ecyj5mcxxh14"]
 
 [ext_resource type="Texture2D" uid="uid://c0a7s142kf1re" path="res://Assets/Snow platform tileset/Snow platform tileset.png" id="1_8nx41"]
 [ext_resource type="Texture2D" uid="uid://dr4r57hcj4xoq" path="res://Assets/Snow platform tileset/Background layers/layer 5 mountain and sky.png" id="1_yk4pf"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dxckbcw07fg11" path="res://Assets/Snow platform tileset/Background layers/layer 2 florest fog.png" id="3_0jqep"]
 [ext_resource type="Texture2D" uid="uid://b58om10unihw1" path="res://Assets/Snow platform tileset/Background layers/layer 3 grass.png" id="4_nug4u"]
 [ext_resource type="Texture2D" uid="uid://dqrvusktieol1" path="res://Assets/Snow platform tileset/Background layers/layer 1 florest.png" id="5_1ylki"]
+[ext_resource type="Texture2D" uid="uid://cfhmpc6ersu8x" path="res://Assets/santa/santa_sheets/idle_sheet.png" id="8_r505j"]
+[ext_resource type="Script" path="res://Scenes/Levels/ReturnHome.cs" id="9_y5onx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v4s1r"]
 friction = 0.01
@@ -51,8 +53,10 @@ texture = ExtResource("1_8nx41")
 5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:1/0 = 0
 6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:1/0 = 0
 7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:1/0 = 0
 8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:1/0 = 0
@@ -88,12 +92,14 @@ texture = ExtResource("1_8nx41")
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:3/0 = 0
 4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:3/0 = 0
 5:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:3/0 = 0
 6:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:3/0 = 0
 7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:3/0 = 0
 9:3/0 = 0
 10:3/0 = 0
@@ -308,6 +314,58 @@ physics_layer_0/collision_layer = 48
 physics_layer_0/collision_mask = 48
 sources/0 = SubResource("TileSetAtlasSource_cgkmw")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6g47"]
+atlas = ExtResource("8_r505j")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uly7m"]
+atlas = ExtResource("8_r505j")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc2jg"]
+atlas = ExtResource("8_r505j")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pywj"]
+atlas = ExtResource("8_r505j")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b44ya"]
+atlas = ExtResource("8_r505j")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcg7u"]
+atlas = ExtResource("8_r505j")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1mch"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6g47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uly7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc2jg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pywj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b44ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcg7u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y2w4"]
+
 [node name="MainLevel" type="Node2D"]
 
 [node name="bruh" type="Node2D" parent="."]
@@ -465,4 +523,19 @@ tile_map_data = PackedByteArray("AAAPAP3/AAABAAYAAAAQAP3/AAACAAYAAAAOAPz/AAAAAAU
 tile_set = SubResource("TileSet_emfua")
 
 [node name="Player" parent="." instance=ExtResource("2_2art2")]
-position = Vector2(106, -80)
+position = Vector2(112, -64)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(240, -1679)
+sprite_frames = SubResource("SpriteFrames_d1mch")
+autoplay = "default"
+frame = 2
+frame_progress = 0.0534398
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(114, -1702)
+scale = Vector2(6.28, 3.63999)
+script = ExtResource("9_y5onx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_0y2w4")

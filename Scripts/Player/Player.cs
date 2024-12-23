@@ -126,11 +126,9 @@ public partial class Player : RigidBody2D
 	private void AlterLeftGrapple(Node2D body)
 	{
 		canLeftGrapple = !canLeftGrapple;
-		GD.Print("LeftGrapple" + canLeftGrapple);
 	}
 	private void AlterRightGrapple(Node2D body)
 	{
 		canRightGrapple = !canRightGrapple;
-		GD.Print("RightGrapple" + canRightGrapple);
 	}
 }
