@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
-[ext_resource type="Texture2D" uid="uid://cqfurpvouohg3" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
-[ext_resource type="Texture2D" uid="uid://bgl83ple5thoo" path="res://Assets/char/Sprite-0003.png" id="3_bnig2"]
-[ext_resource type="Texture2D" uid="uid://bnrrj8ue2tig2" path="res://Assets/char/Sprite-0005.png" id="4_bi6hx"]
+[ext_resource type="Texture2D" uid="uid://v7eivn6nabg7" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
+[ext_resource type="Texture2D" uid="uid://d18jwl7i4yyvc" path="res://Assets/char/Sprite-0003.png" id="3_bnig2"]
+[ext_resource type="Texture2D" uid="uid://byokqwolwko10" path="res://Assets/char/Sprite-0005.png" id="4_bi6hx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aodvs"]
 radius = 12.0

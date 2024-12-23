@@ -3,7 +3,7 @@ using Godot;
 public partial class Player : RigidBody2D
 {
 	//Arms and movement
-	private const float ROTATION_TORQUE = 50000.0f;
+	private const float ROTATION_TORQUE = 40000.0f;
 	[Export] public RigidBody2D RightArm {get; private set;}
 	[Export] public RigidBody2D LeftArm {get; private set;}
 	//Groundchecks and groundcheck boolean
