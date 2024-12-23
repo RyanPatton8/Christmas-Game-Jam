@@ -1,3 +1,4 @@
+using System;
 using System.Dynamic;
 using Godot;
 
@@ -24,17 +25,22 @@ public partial class Player : RigidBody2D
 	[Export] public AudioStreamPlayer2D Sfx {get; private set;}
 	[Export] public AudioStream Collision {get; private set;}
 	[Export] public AudioStream Grapple {get; private set;}
+	[Export] public Area2D NoiseMakerR {get; private set;}
+	[Export] public Area2D NoiseMakerL {get; private set;}
 	private PackedScene GrapplePoint = (PackedScene)ResourceLoader.Load("res://Scenes/Player/GrapplePoint.tscn");
 
 	//Assigning Signals for each node
 	public override void _Ready()
 	{
+		NoiseMakerL.BodyEntered += MakeContactNoise;
+		NoiseMakerR.BodyEntered += MakeContactNoise;
 		RightGroundCheck.BodyEntered += AllowRightGrapple;
 		LeftGroundCheck.BodyEntered += AllowLeftGrapple;
 		RightGroundCheck.BodyExited += DenyRightGrapple;
 		LeftGroundCheck.BodyExited += DenyLeftGrapple;
 	}
-	public override void _PhysicsProcess(double delta)
+
+    public override void _PhysicsProcess(double delta)
 	{
 		ArmRotation();
 		CapAngularVelocity(RightArm);
@@ -134,14 +140,10 @@ public partial class Player : RigidBody2D
 	private void AllowLeftGrapple(Node2D body)
 	{
 		canLeftGrapple = true;
-		Sfx.Stream = Collision;
-		Sfx.Play();
 	}
 	private void AllowRightGrapple(Node2D body)
 	{
 		canRightGrapple = true;
-		Sfx.Stream = Collision;
-		Sfx.Play();
 	}
 
 	private void DenyLeftGrapple(Node2D body)
@@ -152,4 +154,9 @@ public partial class Player : RigidBody2D
 	{
 		canRightGrapple = false;
 	}
+    private void MakeContactNoise(Node2D body)
+    {
+        Sfx.Stream = Collision;
+		Sfx.Play();
+    }
 }

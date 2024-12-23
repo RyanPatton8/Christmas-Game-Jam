@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx83b5dhk73dt"]
+[gd_scene load_steps=11 format=3 uid="uid://dx83b5dhk73dt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_oittr"]
 [ext_resource type="Texture2D" uid="uid://cqfurpvouohg3" path="res://Assets/char/Sprite-0004.png" id="2_el2lm"]
@@ -13,9 +13,11 @@ height = 37.3333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qc34k"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ei1hn"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_gmgm6"]
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook", "RightGrapplePos", "LeftGrapplePos", "Sfx")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook", "RightGrapplePos", "LeftGrapplePos", "Sfx", "NoiseMakerR", "NoiseMakerL")]
 collision_layer = 9
 collision_mask = 9
 continuous_cd = 2
@@ -31,6 +33,8 @@ LeftGrapplePos = NodePath("LeftArm/GrapplePlacementLeft")
 Sfx = NodePath("AudioStreamPlayer2D")
 Collision = ExtResource("2_v2w3f")
 Grapple = ExtResource("3_lij2v")
+NoiseMakerR = NodePath("RightArm/NoiseMakerR")
+NoiseMakerL = NodePath("LeftArm/NoiseMakerL")
 metadata/_edit_horizontal_guides_ = [-42.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -55,7 +59,7 @@ position = Vector2(1, -9)
 texture = ExtResource("3_bnig2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightArm"]
-polygon = PackedVector2Array(-4, -1, -4, -16, 1, -24, 3, -26, 8, -26, 12, -20, 12, -15, 8, -22, 3, -22, -1, -13, -1, 3, -4, 3)
+polygon = PackedVector2Array(-4, -1, -4, -16, 1, -24, 3, -26, 8, -26, 12, -20, 12, -15, 10.0747, -18.3692, 8, -22, 3, -22, -1, -13, -1, 3, -4, 3)
 
 [node name="ForBody" type="PinJoint2D" parent="RightArm"]
 position = Vector2(-11, 1)
@@ -87,6 +91,13 @@ angular_limit_upper = 0.261799
 
 [node name="GrapplePlacementRight" type="Marker2D" parent="RightArm"]
 position = Vector2(9, -11)
+
+[node name="NoiseMakerR" type="Area2D" parent="RightArm"]
+position = Vector2(12, -15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/NoiseMakerR"]
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CircleShape2D_ei1hn")
 
 [node name="LeftArm" type="RigidBody2D" parent="."]
 position = Vector2(-20, 7)
@@ -131,6 +142,13 @@ angular_limit_upper = 0.261799
 
 [node name="GrapplePlacementLeft" type="Marker2D" parent="LeftArm"]
 position = Vector2(-8, -13)
+
+[node name="NoiseMakerL" type="Area2D" parent="LeftArm"]
+position = Vector2(-11, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/NoiseMakerL"]
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CircleShape2D_ei1hn")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = -15.0

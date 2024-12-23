@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://ecyj5mcxxh14"]
+[gd_scene load_steps=29 format=4 uid="uid://ecyj5mcxxh14"]
 
 [ext_resource type="Texture2D" uid="uid://c0a7s142kf1re" path="res://Assets/Snow platform tileset/Snow platform tileset.png" id="1_8nx41"]
 [ext_resource type="Script" path="res://Scenes/Levels/WorldBorder.cs" id="1_orvhj"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://dqrvusktieol1" path="res://Assets/Snow platform tileset/Background layers/layer 1 florest.png" id="5_1ylki"]
 [ext_resource type="Texture2D" uid="uid://cfhmpc6ersu8x" path="res://Assets/santa/santa_sheets/idle_sheet.png" id="8_r505j"]
 [ext_resource type="Script" path="res://Scenes/Levels/ReturnHome.cs" id="9_y5onx"]
+[ext_resource type="Script" path="res://Scenes/Levels/AmbientSounds.cs" id="11_qm01p"]
+[ext_resource type="AudioStream" uid="uid://co33wd7u6pprv" path="res://Assets/audio/natural_ambience_v1.1/loops/birds_01.wav" id="12_wwo75"]
+[ext_resource type="AudioStream" uid="uid://i403hyc5i10q" path="res://Assets/audio/natural_ambience_v1.1/loops/wind_01.wav" id="13_m75gq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3oqdj"]
 size = Vector2(1422, 2112)
@@ -370,6 +373,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0y2w4"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xhbyf"]
+size = Vector2(1080, 806)
+
 [node name="MainLevel" type="Node2D"]
 
 [node name="WorldBorder" type="Area2D" parent="."]
@@ -534,7 +540,7 @@ tile_map_data = PackedByteArray("AAAPAP3/AAABAAYAAAAQAP3/AAACAAYAAAAOAPz/AAAAAAU
 tile_set = SubResource("TileSet_emfua")
 
 [node name="Player" parent="." instance=ExtResource("2_2art2")]
-position = Vector2(108, -53)
+position = Vector2(1018, -972)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(240, -1679)
@@ -550,3 +556,30 @@ script = ExtResource("9_y5onx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndOfLevel"]
 shape = SubResource("RectangleShape2D_0y2w4")
+
+[node name="SoundAreas" type="Node" parent="." node_paths=PackedStringArray("Ambience", "Forest", "Mountain")]
+script = ExtResource("11_qm01p")
+Ambience = NodePath("AudioStreamPlayer")
+Forest = NodePath("Forest")
+Mountain = NodePath("Mountain")
+ForestAmbience = ExtResource("12_wwo75")
+MountainAmbience = ExtResource("13_m75gq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundAreas"]
+volume_db = -35.0
+
+[node name="Forest" type="Area2D" parent="SoundAreas"]
+position = Vector2(575, -332)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoundAreas/Forest"]
+position = Vector2(4, -55)
+shape = SubResource("RectangleShape2D_xhbyf")
+
+[node name="Mountain" type="Area2D" parent="SoundAreas"]
+position = Vector2(572, -1242)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoundAreas/Mountain"]
+position = Vector2(4, 42)
+shape = SubResource("RectangleShape2D_xhbyf")
+
+[node name="CheckPoints" type="Node" parent="."]
