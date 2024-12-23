@@ -328,8 +328,8 @@ flip_h = true
 flip_v = true
 
 [node name="Node2D2" type="Node2D" parent="."]
-position = Vector2(1600, -300)
-scale = Vector2(3, 3)
+position = Vector2(1300, -308)
+scale = Vector2(4, 4)
 
 [node name="TextureRect" type="TextureRect" parent="Node2D2"]
 anchors_preset = 15
@@ -392,8 +392,8 @@ grow_vertical = 2
 texture = ExtResource("5_1ylki")
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(3400, -300)
-scale = Vector2(3, 3)
+position = Vector2(3698, -315)
+scale = Vector2(4, 4)
 
 [node name="TextureRect" type="TextureRect" parent="Node2D"]
 anchors_preset = 15
