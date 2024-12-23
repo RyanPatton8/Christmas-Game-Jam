@@ -9,9 +9,9 @@
 radius = 12.0
 height = 37.3333
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6iv0"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qc34k"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h281g"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmgm6"]
 
 [node name="Player" type="RigidBody2D" node_paths=PackedStringArray("RightArm", "LeftArm", "RightGroundCheck", "LeftGroundCheck", "RightHook", "LeftHook", "RightGrapplePos", "LeftGrapplePos")]
 collision_layer = 9
@@ -71,7 +71,7 @@ input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/RightGroundCheck"]
 scale = Vector2(3, 3)
-shape = SubResource("RectangleShape2D_d6iv0")
+shape = SubResource("CircleShape2D_qc34k")
 
 [node name="ForGround" type="PinJoint2D" parent="RightArm"]
 position = Vector2(11, -14)
@@ -115,7 +115,7 @@ input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/LeftGroundCheck"]
 scale = Vector2(3, 3)
-shape = SubResource("RectangleShape2D_h281g")
+shape = SubResource("CircleShape2D_gmgm6")
 
 [node name="ForGround" type="PinJoint2D" parent="LeftArm"]
 position = Vector2(-10, -16)
