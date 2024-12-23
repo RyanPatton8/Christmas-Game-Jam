@@ -317,10 +317,10 @@ scale = Vector2(10, 10)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1030.6
-offset_top = -27.5001
-offset_right = 1342.4
-offset_bottom = 921.5
+offset_left = -3966.0
+offset_top = -30.0
+offset_right = 2150.0
+offset_bottom = 3968.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_1ylki")
@@ -465,4 +465,4 @@ tile_map_data = PackedByteArray("AAAPAP3/AAABAAYAAAAQAP3/AAACAAYAAAAOAPz/AAAAAAU
 tile_set = SubResource("TileSet_emfua")
 
 [node name="Player" parent="." instance=ExtResource("2_2art2")]
-position = Vector2(789, -1665)
+position = Vector2(104, -37)
