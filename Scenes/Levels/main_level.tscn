@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://ecyj5mcxxh14"]
+[gd_scene load_steps=31 format=4 uid="uid://ecyj5mcxxh14"]
 
 [ext_resource type="Texture2D" uid="uid://c0a7s142kf1re" path="res://Assets/Snow platform tileset/Snow platform tileset.png" id="1_8nx41"]
 [ext_resource type="Texture2D" uid="uid://dr4r57hcj4xoq" path="res://Assets/Snow platform tileset/Background layers/layer 5 mountain and sky.png" id="1_yk4pf"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scenes/Levels/ReturnHome.cs" id="9_y5onx"]
 [ext_resource type="Script" path="res://Scenes/Levels/AmbientSounds.cs" id="11_qm01p"]
 [ext_resource type="AudioStream" uid="uid://co33wd7u6pprv" path="res://Assets/audio/natural_ambience_v1.1/loops/birds_01.wav" id="12_wwo75"]
+[ext_resource type="Script" path="res://Scenes/Levels/CheckPoints.cs" id="13_bat37"]
 [ext_resource type="AudioStream" uid="uid://i403hyc5i10q" path="res://Assets/audio/natural_ambience_v1.1/loops/wind_01.wav" id="13_m75gq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v4s1r"]
@@ -375,6 +376,12 @@ size = Vector2(1080, 600)
 [sub_resource type="LabelSettings" id="LabelSettings_73583"]
 font_size = 12
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5t77"]
+size = Vector2(134.5, 87.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66fdi"]
+size = Vector2(1369, 2128)
+
 [node name="MainLevel" type="Node2D"]
 
 [node name="bruh" type="Node2D" parent="."]
@@ -589,3 +596,69 @@ offset_right = 475.0
 offset_bottom = -1699.0
 text = "Enter my shop to return to menu"
 label_settings = SubResource("LabelSettings_73583")
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("WorldBorder", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8")]
+script = ExtResource("13_bat37")
+WorldBorder = NodePath("WorldBorder")
+C1 = NodePath("C1")
+C2 = NodePath("C2")
+C3 = NodePath("C3")
+C4 = NodePath("C4")
+C5 = NodePath("C5")
+C6 = NodePath("C6")
+C7 = NodePath("C7")
+C8 = NodePath("C8")
+
+[node name="C1" type="Area2D" parent="Node"]
+position = Vector2(104, -47)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/C1"]
+shape = SubResource("RectangleShape2D_j5t77")
+
+[node name="C2" type="Area2D" parent="Node"]
+position = Vector2(813, -201)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/C2"]
+shape = SubResource("RectangleShape2D_j5t77")
+
+[node name="C3" type="Area2D" parent="Node"]
+position = Vector2(139, -478)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/C3"]
+shape = SubResource("RectangleShape2D_j5t77")
+
+[node name="C4" type="Area2D" parent="Node"]
+position = Vector2(568, -773)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/C4"]
+shape = SubResource("RectangleShape2D_j5t77")
+
+[node name="C5" type="Area2D" parent="Node"]
+position = Vector2(1019, -983)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/C5"]
+shape = SubResource("RectangleShape2D_j5t77")
+
+[node name="C6" type="Area2D" parent="Node"]
+position = Vector2(132, -1118)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/C6"]
+shape = SubResource("RectangleShape2D_j5t77")
+
+[node name="C7" type="Area2D" parent="Node"]
+position = Vector2(225, -1343)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/C7"]
+shape = SubResource("RectangleShape2D_j5t77")
+
+[node name="C8" type="Area2D" parent="Node"]
+position = Vector2(812, -1383)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/C8"]
+shape = SubResource("RectangleShape2D_j5t77")
+
+[node name="WorldBorder" type="Area2D" parent="Node"]
+position = Vector2(593, -884)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/WorldBorder"]
+shape = SubResource("RectangleShape2D_66fdi")
