@@ -60,6 +60,7 @@ stickLeftArm={
 [physics]
 
 2d/default_gravity=470.0
+2d/solver/solver_iterations=32
 
 [rendering]
 
