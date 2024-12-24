@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bgl83ple5thoo" path="res://Assets/char/Sprite-0003.png" id="8_7u2ur"]
 [ext_resource type="Texture2D" uid="uid://bnrrj8ue2tig2" path="res://Assets/char/Sprite-0005.png" id="9_s5n30"]
 [ext_resource type="Texture2D" uid="uid://cqfurpvouohg3" path="res://Assets/char/Sprite-0004.png" id="10_le7fb"]
-[ext_resource type="AudioStream" uid="uid://cphx05opq6qy3" path="res://Scenes/menus/Goblins to Elves on Christmas Eve.mp3" id="12_2mhn2"]
+[ext_resource type="AudioStream" uid="uid://y2ravw0u54wc" path="res://Scenes/menus/Goblin's Christmas Journey.mp3" id="12_pvgxg"]
 
 [sub_resource type="SystemFont" id="SystemFont_nudo2"]
 font_names = PackedStringArray("Agency FB")
@@ -224,6 +224,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_2mhn2")
+stream = ExtResource("12_pvgxg")
 volume_db = -10.0
 autoplay = true
